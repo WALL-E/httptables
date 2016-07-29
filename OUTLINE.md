@@ -1,14 +1,15 @@
 # 前置条件
 
-* nginx需要支持lua, 推荐使用openresty
+* 需要安装nginx, 并且需要支持lua, 推荐使用openresty套件
 * 每一个URL对应唯一一个业务场景
 * 用户定义
   * 来源IP （需要上游代理传递客户端来源IP，默认从ngx.remote_addr获取）
   * 设备ID （推荐以HTTP Header形式传递，默认名为Access-Device-Id）
   * 用户ID （推荐以HTTP Header形式传递，默认名为Access-User-Id）
+* 需要风控系统或手动下发规则
 
 # 管理接口(Admin)设计
-管理接口采用Restful风格的设计理念，参数参数目前仅支持
+使用http API下发规则，接口采用Restful风格的设计理念，数据格式目前仅支持
 
 * x-www-form-urlencoded
 
