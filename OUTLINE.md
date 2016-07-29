@@ -1,0 +1,66 @@
+# 前置条件
+
+* nginx需要支持lua, 推荐使用openresty
+* 每一个URL对应唯一一个业务场景
+* 用户定义
+  * 来源IP （需要上游代理传递客户端来源IP，默认从ngx.remote_addr获取）
+  * 设备ID （推荐以HTTP Header形式传递，默认名为Access-Device-Id）
+  * 用户ID （推荐以HTTP Header形式传递，默认名为Access-User-Id）
+
+# 管理接口(Admin)设计
+管理接口采用Restful风格的设计理念，参数参数目前仅支持
+
+* x-www-form-urlencoded
+
+## 规则类型
+目前内置三种规则类型
+
+* 接口地址：/apis/httptables/  
+* 权限：更新/查看
+
+| 参数 | 类型 | 说明 |
+| :-----|:----| :----|
+| name    | 字符串    | 目前仅支持三种origin、device、user    |
+| priority    | 整型    |  规则优先级相同时，执行顺序不确定   |
+| lamda    | 字符串    |   有效的lua语句，定义怎样获取数据，目前不支持修改(可选)  |
+
+
+## 来源规则
+使用客户端IP定义
+
+* 接口地址：/apis/httptables/origins  
+* 权限：创建/更新/删除/查看 
+
+
+| 参数 | 类型 | 说明 |
+| :-----|:----| :----|
+| ip    | ip地址    | 目前仅支持单IP，将来可以支持子网设置    |
+| ttl    | 整型    |  规则生效时间(秒)，0表示永久   |
+| judge    | 字符串    |   目前仅支持reject、delay(毫秒)  |
+| response    | json字符串    |   响应体内容，需要符合resthub规范(可选)  |
+
+## 设备规则
+每个设备需要生成全球唯一的设备ID
+
+* 接口地址：/httptables/devices 
+* 权限：创建/更新/删除/查看 
+
+| 参数 | 类型 | 说明 |
+| :-----|:----| :----|
+| deviceid    | 字符串    | 有效的设备id    |
+| ttl    | 整型    |  规则生效时间(秒)，0表示永久   |
+| judge    | 字符串    |   目前仅支持reject、delay(毫秒)  |
+| response    | json字符串    |   响应体内容，需要符合resthub规范(可选) |
+## 用户规则
+每个用户需要生成全球唯一的用户ID
+
+* 接口地址：/httptables/users 
+* 权限：创建/更新/删除/查看 
+
+| 参数 | 类型 | 说明 |
+| :-----|:----| :----|
+| userid    | 字符串    | 有效的用户id    |
+| ttl    | 整型    |  规则生效时间(秒)，0表示永久   |
+| judge    | 字符串    |   目前仅支持reject、delay(毫秒)  |
+| response    | json字符串    |   响应体内容，需要符合resthub规范(可选)  |
+
