@@ -17,13 +17,15 @@
 目前内置三种规则类型
 
 * 接口地址：/apis/httptables/  
-* 权限：更新/查看
+* 权限：查看/更新
+* 请求方法：GET/PATCH
 
 | 参数 | 类型 | 说明 |
 | :-----|:----| :----|
 | name    | 字符串    | 目前仅支持三种origin、device、user    |
 | priority    | 整型    |  规则优先级相同时，执行顺序不确定   |
 | lamda    | 字符串    |   有效的lua语句，定义怎样获取数据，目前不支持修改(可选)  |
+| enable    | 整型    |   是否启用此类规则，0表示停用，1表示启用  |
 
 
 ## 来源规则
@@ -31,6 +33,7 @@
 
 * 接口地址：/apis/httptables/origins  
 * 权限：创建/更新/删除/查看 
+* 请求方法：GET/POST/PUT/PATCH/DELETE
 
 
 | 参数 | 类型 | 说明 |
@@ -47,6 +50,7 @@
 
 * 接口地址：/httptables/devices 
 * 权限：创建/更新/删除/查看 
+* 请求方法：GET/POST/PUT/PATCH/DELETE
 
 | 参数 | 类型 | 说明 |
 | :-----|:----| :----|
@@ -61,6 +65,7 @@
 
 * 接口地址：/httptables/users 
 * 权限：创建/更新/删除/查看 
+* 请求方法：GET/POST/PUT/PATCH/DELETE
 
 | 参数 | 类型 | 说明 |
 | :-----|:----| :----|
