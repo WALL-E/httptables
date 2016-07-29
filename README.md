@@ -1,4 +1,4 @@
-# httptables
+# httptables (正在开发中...)
 httptables是一个基于OpenResty的软防火墙，可以配合风控系统针对HTTP请求做不同的处理，目前计划支持两种响应方式
 
 * Reject
