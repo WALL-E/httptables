@@ -9,7 +9,7 @@
 * 需要风控系统或手动下发规则
 
 # 管理接口(Admin)设计
-使用http API下发规则，接口采用Restful风格的设计理念，数据格式目前仅支持
+使用http API接口管理规则，采用Restful风格的设计理念，数据格式目前仅支持
 
 * x-www-form-urlencoded
 
