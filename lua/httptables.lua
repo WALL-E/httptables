@@ -1,24 +1,16 @@
 -- httptables startup
 
-local P = {}
+local _M = {}
 
 local ngx = require "ngx"
 
 
-local function init()
+function _M.init()
     ngx.log(ngx.INFO, "[Global] init")
 end
 
-local function init_worker()
+function _M.init_worker()
     ngx.log(ngx.INFO, "[Global] init_worker")
 end
 
-local function access()
-    ngx.log(ngx.INFO, "[Global] access")
-end
-
-P.init = init
-P.init_worker = init_worker
-P.access = access
-
-return P
+return _M
