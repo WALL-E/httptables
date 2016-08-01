@@ -13,8 +13,8 @@
 * 每一个URL对应唯一一个业务场景
 * 用户定义
   * 来源IP （需要上游代理传递客户端来源IP，默认从ngx.remote_addr获取）
-  * 设备ID （推荐以HTTP Header形式传递，默认名为Access-Device-Id）
-  * 用户ID （推荐以HTTP Header形式传递，默认名为Access-User-Id）
+  * 设备ID （推荐以HTTP Header形式传递，默认名为X-Device-ID）
+  * 用户ID （推荐以HTTP Header形式传递，默认名为X-User-ID）
 * 需要风控系统或手动下发规则
 
 二. 管理接口(Admin)设计
