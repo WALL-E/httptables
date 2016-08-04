@@ -39,7 +39,7 @@
 # 三. 数据库设计
 涉及到4个数据库，表字段请查看 [Restful接口设计](#RestFul接口设计)
 
-* httptable
+* role
 * origin
 * device
 * user
@@ -54,7 +54,7 @@
 ## 规则类型
 目前内置三种规则类型
 
-* 接口地址：/apis/httptables/  
+* 接口地址：/apis/roles/
 * 权限：查看/更新
 * 请求方法：GET/PATCH
 
@@ -69,7 +69,7 @@
 ## 来源规则
 使用客户端IP定义
 
-* 接口地址：/apis/httptables/origins  
+* 接口地址：/apis/roles/origins
 * 权限：创建/更新/删除/查看 
 * 请求方法：GET/POST/PUT/PATCH/DELETE
 
@@ -87,7 +87,7 @@
 ## 设备规则
 每个设备需要生成全球唯一的设备ID
 
-* 接口地址：/httptables/devices 
+* 接口地址：/roles/devices
 * 权限：创建/更新/删除/查看 
 * 请求方法：GET/POST/PUT/PATCH/DELETE
 
@@ -103,7 +103,7 @@
 ## 用户规则
 每个用户需要生成全球唯一的用户ID
 
-* 接口地址：/httptables/users 
+* 接口地址：/roles/users
 * 权限：创建/更新/删除/查看 
 * 请求方法：GET/POST/PUT/PATCH/DELETE
 
