@@ -48,9 +48,10 @@
 
 | 参数 | 类型 | 说明 |
 | :-----|:----| :----|
-| ip    | ip地址    | 目前仅支持单IP，将来可以支持子网设置    |
+| ip    | ip地址    | 目前仅支持单IP，多个IP使用逗号分隔    |
 | uri    | 字符串    | 请求地址，不包含query参数    |
 | method    | 字符串    | 请求方法，多个值以逗号分隔    |
+| createtime    | 整型    |  规则创建时间，0表示当前时间   |
 | ttl    | 整型    |  规则生效时间(秒)，0表示永久   |
 | judge    | 字符串    |   目前仅支持reject、delay(毫秒)  |
 | response    | json字符串    |   响应体内容，需要符合resthub规范(可选)  |
@@ -67,6 +68,7 @@
 | deviceid    | 字符串    | 有效的设备id    |
 | uri    | 字符串    | 请求地址，不包含query参数    |
 | method    | 字符串    | 请求方法，多个值以逗号分隔    |
+| createtime    | 整型    |  规则创建时间，0表示当前时间   |
 | ttl    | 整型    |  规则生效时间(秒)，0表示永久   |
 | judge    | 字符串    |   目前仅支持reject、delay(毫秒)  |
 | response    | json字符串    |   响应体内容，需要符合resthub规范(可选) |
@@ -82,6 +84,7 @@
 | userid    | 字符串    | 有效的用户id    |
 | uri    | 字符串    | 请求地址，不包含query参数    |
 | method    | 字符串    | 请求方法，多个值以逗号分隔    |
+| createtime    | 整型    |  规则创建时间，0表示当前时间   |
 | ttl    | 整型    |  规则生效时间(秒)，0表示永久   |
 | judge    | 字符串    |   目前仅支持reject、delay(毫秒)  |
 | response    | json字符串    |   响应体内容，需要符合resthub规范(可选)  |
