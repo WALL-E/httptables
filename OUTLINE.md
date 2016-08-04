@@ -101,7 +101,7 @@ Nginx <-- Redis <-- MySQL <-- Restful(http server) <-- (各种风控系统)
 | method    | 字符串(64)    | 请求方法，多个值以逗号分隔    |
 | createtime    | 整型    |  规则创建时间，0表示当前时间(可选)   |
 | ttl    | 整型    |  规则生效时间(秒)，0表示永久   |
-| judge    | 字符串    |   目前仅支持reject、delay(毫秒)  |
+| judge    | 字符串(64)    |   目前仅支持reject、delay(毫秒)  |
 | response    | json字符串(1024)    |   响应体内容，需要符合resthub规范(可选)  |
 
 
