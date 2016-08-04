@@ -18,21 +18,34 @@
 * 需要风控系统或手动下发规则
 
 # 二. 架构设计
-规则数据流
 
-Nginx <-- Redis <-- MySQL <-- Restful(http server) <-- (各种风控系统)
+* 数据流
+
+   Nginx <-- Redis <-- MySQL <-- Restful(http server) <-- (各种风控系统)
+
+* 事件流
+
+  更新规则 -> 实时生效(需要主要触发事件)
+
+  更新规则 -> 定时生效(cron触发)
+
+* 三级缓存
+
+  MySQL -> Redis -> LocalMem
+
+  高延时 -----------------> 低延时
 
 
 # 三. 数据库设计
-涉及到4个数据库，表字段请查看 [管理接口(Admin)设计](#管理接口设计)
+涉及到4个数据库，表字段请查看 [Restful接口设计](#RestFul接口设计)
 
 * httptable
 * origin
 * device
 * user
 
-# 四. 管理接口(Admin)设计
-<span id = "管理接口设计">
+# 四. RestFul接口设计
+<span id = "RestFul设计">
 使用http API接口管理规则，采用Restful风格的设计理念，数据格式目前仅支持
 </span>
 
@@ -105,7 +118,16 @@ Nginx <-- Redis <-- MySQL <-- Restful(http server) <-- (各种风控系统)
 | response    | json字符串(1024)    |   响应体内容，需要符合resthub规范(可选)  |
 
 
+# 五. 规则引擎设计
+规则引擎使用Nginx+Lua实现
 
-五. 规则引擎设计
------------
-略。
+## 引擎逻辑
+按照规则优先级，遍历所有类型的规则
+
+## 管理接口
+默认管理接口为10983
+
+* 更新规则，立即从Redis获取最新配置
+  * http://127.0.0.1:10983/admin/update
+* 查看规则事件统计
+  * http://127.0.0.1:10983/admin/status
