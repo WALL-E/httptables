@@ -1,3 +1,5 @@
 #!/bin/bash
 
-/apps/openresty/nginx/sbin/nginx -c conf/nginx.conf -s reload
+cd /apps/openresty/nginx/
+sbin/nginx -s reload
+cd -
