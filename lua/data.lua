@@ -1,57 +1,59 @@
 
 local _M = {}
 
-local httptables = {
-    ["origin"] = {
+local tables = {
+    {
+        ["name"] = "origin",
+        ["priority"] = 5,
+        ["lamda"] = nil,
+        ["enable"] = true
+    },
+
+    {
+        ["name"] = "device",
         ["priority"] = 1,
         ["lamda"] = nil,
         ["enable"] = true
     },
 
-    ["device"] = {
-        ["priority"] = 2,
+    {
+        ["name"] = "user",
+        ["priority"] = 5,
         ["lamda"] = nil,
         ["enable"] = true
     },
-
-    ["user"] = {
-        ["priority"] = 3,
-        ["lamda"] = nil,
-        ["enable"] = true
-    }
 }
 
-local origins = {
+local roles = {
     {
-        ["origin"] = "1.1.1.1,2.2.2.2",
-        ["uri"] = "a/b/c/d",
+        ["type"] = "origin",
+        ["mark"] = "127.0.0.1",
+        ["uri"] = "/test",
         ["method"] = "get,post",
-        ["ttl"] = "get,post",
-        ["createtime"] = 1470282769,
+        ["ttl"] = 3600,
+        ["createtime"] = 1470304637,
         ["judge"] = "reject",
-        ["reaponse"] = '{"status:400, "message":"illegal device"}',
+        ["reaponse"] = '{"status:400, "message":"illegal origin"}',
     },
-}
 
-local users = {
     {
-        ["deviceid"] = "100",
-        ["uri"] = "a/b/c/d",
-        ["method"] = "get,post",
-        ["ttl"] = "get,post",
-        ["createtime"] = 1470282769,
+        ["type"] = "user",
+        ["mark"] = "abcd",
+        ["uri"] = "/test",
+        ["method"] = "get",
+        ["ttl"] = 3600,
+        ["createtime"] = 1470304637,
         ["judge"] = "reject",
-        ["reaponse"] = '{"status:400, "message":"illegal device"}',
+        ["reaponse"] = '{"status:400, "message":"illegal user"}',
     },
-}
 
-local devices = {
     {
-        ["deviceid"] = "100",
-        ["uri"] = "a/b/c/d",
-        ["method"] = "get,post",
-        ["ttl"] = "get,post",
-        ["createtime"] = 1470282769,
+        ["type"] = "device",
+        ["mark"] = "100",
+        ["uri"] = "/test",
+        ["method"] = "post",
+        ["ttl"] = 3600,
+        ["createtime"] = 1470304637,
         ["judge"] = "reject",
         ["reaponse"] = '{"status:400, "message":"illegal device"}',
     },
@@ -59,9 +61,7 @@ local devices = {
 
 
 
-_M.httptables = httptables
-_M.origins = origins
-_M.users = users
-_M.devices = devices
+_M.tables = tables
+_M.roles = roles
 
 return _M
