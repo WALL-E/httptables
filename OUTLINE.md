@@ -69,7 +69,7 @@
 ## 来源规则
 使用客户端IP定义
 
-* 接口地址：/apis/roles/origins
+* 接口地址：/apis/origins
 * 权限：创建/更新/删除/查看 
 * 请求方法：GET/POST/PUT/PATCH/DELETE
 
@@ -87,7 +87,7 @@
 ## 设备规则
 每个设备需要生成全球唯一的设备ID
 
-* 接口地址：/roles/devices
+* 接口地址：/apis/devices
 * 权限：创建/更新/删除/查看 
 * 请求方法：GET/POST/PUT/PATCH/DELETE
 
@@ -103,7 +103,7 @@
 ## 用户规则
 每个用户需要生成全球唯一的用户ID
 
-* 接口地址：/roles/users
+* 接口地址：/apis/users
 * 权限：创建/更新/删除/查看 
 * 请求方法：GET/POST/PUT/PATCH/DELETE
 
