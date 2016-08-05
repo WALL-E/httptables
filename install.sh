@@ -4,7 +4,7 @@ root=/apps/openresty
 
 dir=$root/nginx/conf/httptables
 
-if [ ! -x "$dir"]; then
+if [ ! -x "$dir" ]; then
     mkdir $dir
 fi
 
