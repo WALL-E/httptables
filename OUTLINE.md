@@ -128,9 +128,13 @@
 默认管理接口为8001
 
 * 更新规则，立即从Redis获取最新配置
-  * http://127.0.0.1:8001/admin/update
+  * get http://host:8001/admin/sync
 * 查看规则事件统计
-  * http://127.0.0.1:8001/admin/status
+  * get http://host:8001/admin/status
+* 查看规则类型
+  * get http://host:8001/admin/role_types
+* 查看规则事件统计
+  * get http://host:8001/admin/roles
 
 
 # 九. Copyright
