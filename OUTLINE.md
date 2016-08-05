@@ -1,27 +1,60 @@
 软件防火墙设计文档
 ===============
 
-版本: v0.4
+版本: v0.5
 
-日期: 2016年08月04日
+日期: 2016年08月05日
 
 
 # 一. 前置条件
 本软件只在某些场景下适用
 
 * 需要安装nginx, 并且需要支持lua, 推荐使用openresty套件
-* 每一个URL对应唯一一个业务场景
-* 用户定义
+* 用户定义(mark)
   * 来源IP （需要上游代理传递客户端来源IP，默认从ngx.remote_addr获取）
   * 设备ID （推荐以HTTP Header形式传递，默认名为X-Device-ID）
   * 用户ID （推荐以HTTP Header形式传递，默认名为X-User-ID）
-* 需要风控系统或手动下发规则
+* 软件本身不会生成规则，需要第三方系统下发规则
 
-# 二. 架构设计
+# 二. 功能列表
+本软件支持以下功能点
+
+* 黑名单
+  * 阻断用户访问，返回自定义内容响应体
+* 延时访问
+  * 放慢用户的请求速率
+
+
+
+# 三. 设计原则
+* 每一种用户(mark)都可以独立并且唯一识别一个HTTP请求调用者，目前默认有三种mark
+  * 来源IP
+  * 设备ID
+  * 用户ID
+* 每条规则只允许设置一种mark
+
+# 四. 规则组成
+每条规则由5部分组成
+
+* mark，默认支持3种类型
+* attr，规则属性
+  * uri
+  * method 请求方法
+* ttl 生效时间
+* action 动作
+* response 自定义响应内容
+
+
+
+# 五. 架构设计
 
 * 数据流
 
    Nginx <-- Redis <-- MySQL <-- Restful(http server) <-- (各种风控系统)
+
+   或者
+
+   Nginx <-- config.yaml <-- (各种风控系统)
 
 * 事件流
 
@@ -36,14 +69,14 @@
   高延时 -----------------> 低延时
 
 
-# 三. 数据库设计
-涉及到2个数据库，表字段请查看 [Restful接口设计](#RestFul接口设计)
+# 六. 数据库设计
+规则使用MySQL作持久化存储，涉及到2个表，表字段请查看 [Restful接口设计](#RestFul接口设计)
 
-* table
+* role_type
 * role
 
 
-# 四. RestFul接口设计
+# 七. RestFul接口设计
 <span id = "RestFul设计">
 使用http API接口管理规则，采用Restful风格的设计理念，数据格式目前仅支持
 </span>
@@ -53,7 +86,7 @@
 ## 规则类型
 目前内置三种规则类型
 
-* 接口地址：/apis/tables
+* 接口地址：/apis/role_types
 * 权限：创建/更新/删除/查看
 * 请求方法：GET/POST/PUT/PATCH/DELETE
 
@@ -79,22 +112,34 @@
 | mark    | 字符串(1024)    | IP地址，或者是设备id或者是用户id。多个用逗号分隔    |
 | uri    | 字符串(1024)    | 请求地址，不包含query参数    |
 | method    | 字符串(64)    | 请求方法，多个值以逗号分隔    |
-| createtime    | 整型    |  规则创建时间，0表示当前时间   |
+| createtime    | 整型    |  规则创建时间   |
 | ttl    | 整型    |  规则生效时间(秒)，0表示永久   |
-| judge    | 字符串(64)    |   目前仅支持reject、delay(毫秒)  |
+| action    | 字符串(64)    |   目前仅支持reject、delay(毫秒)  |
 | response    | json字符串(1024)    |   响应体内容，需要符合resthub规范(可选)  |
 
 
-# 五. 规则引擎设计
+# 八. 规则引擎设计
 规则引擎使用Nginx+Lua实现
 
 ## 引擎逻辑
 按照规则优先级，遍历所有类型的规则
 
 ## 管理接口
-默认管理接口为10983
+默认管理接口为8001
 
 * 更新规则，立即从Redis获取最新配置
-  * http://127.0.0.1:10983/admin/update
+  * http://127.0.0.1:8001/admin/update
 * 查看规则事件统计
-  * http://127.0.0.1:10983/admin/status
+  * http://127.0.0.1:8001/admin/status
+
+
+# 九. Copyright
+感谢以下项开源目
+
+* OpenResty
+
+  [OpenResty](https://openresty.org/en/) ™ 是一个基于 Nginx 与 Lua 的高性能 Web 平台。
+
+* Kong
+
+  [Kong](http://www.getkong.org/) 是在客户端和（微）服务间转发API通信的API网关，通过插件扩展功能。
