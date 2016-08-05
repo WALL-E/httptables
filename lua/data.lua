@@ -33,18 +33,7 @@ local roles = {
         ["ttl"] = 360000,
         ["createtime"] = 1470304637,
         ["judge"] = "reject",
-        ["response"] = '{"status:400, "message":"illegal origin"}',
-    },
-
-    {
-        ["type"] = "user",
-        ["mark"] = "user_1",
-        ["uri"] = "/test/user",
-        ["method"] = "get",
-        ["ttl"] = 360000,
-        ["createtime"] = 1470304637,
-        ["judge"] = "reject",
-        ["response"] = '{"status:400, "message":"illegal user"}',
+        ["response"] = '{"status":4001, "message":"illegal origin"}',
     },
 
     {
@@ -55,8 +44,21 @@ local roles = {
         ["ttl"] = 360000,
         ["createtime"] = 1470304637,
         ["judge"] = "reject",
-        ["response"] = '{"status:400, "message":"illegal device"}',
+        ["response"] = '{"status":4003, "message":"illegal device"}',
     },
+
+    {
+        ["type"] = "user",
+        ["mark"] = "user_1",
+        ["uri"] = "/test/user",
+        ["method"] = "get",
+        ["ttl"] = 360000,
+        ["createtime"] = 1470304637,
+        ["judge"] = "reject",
+        ["response"] = '{"status":4002, "message":"illegal user"}',
+    },
+
+
 }
 
 
