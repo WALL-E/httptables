@@ -4,21 +4,21 @@ local _M = {}
 local tables = {
     {
         ["name"] = "origin",
-        ["priority"] = 5,
+        ["priority"] = 3,
         ["lamda"] = nil,
         ["enable"] = true
     },
 
     {
         ["name"] = "device",
-        ["priority"] = 1,
+        ["priority"] = 2,
         ["lamda"] = nil,
         ["enable"] = true
     },
 
     {
         ["name"] = "user",
-        ["priority"] = 5,
+        ["priority"] = 1,
         ["lamda"] = nil,
         ["enable"] = true
     },
@@ -28,34 +28,34 @@ local roles = {
     {
         ["type"] = "origin",
         ["mark"] = "127.0.0.1",
-        ["uri"] = "/test",
+        ["uri"] = "/test/origin",
         ["method"] = "get,post",
-        ["ttl"] = 3600,
+        ["ttl"] = 360000,
         ["createtime"] = 1470304637,
         ["judge"] = "reject",
-        ["reaponse"] = '{"status:400, "message":"illegal origin"}',
+        ["response"] = '{"status:400, "message":"illegal origin"}',
     },
 
     {
         ["type"] = "user",
-        ["mark"] = "abcd",
-        ["uri"] = "/test",
+        ["mark"] = "user_1",
+        ["uri"] = "/test/user",
         ["method"] = "get",
-        ["ttl"] = 3600,
+        ["ttl"] = 360000,
         ["createtime"] = 1470304637,
         ["judge"] = "reject",
-        ["reaponse"] = '{"status:400, "message":"illegal user"}',
+        ["response"] = '{"status:400, "message":"illegal user"}',
     },
 
     {
         ["type"] = "device",
-        ["mark"] = "100",
-        ["uri"] = "/test",
+        ["mark"] = "device_1",
+        ["uri"] = "/test/device",
         ["method"] = "post",
-        ["ttl"] = 3600,
+        ["ttl"] = 360000,
         ["createtime"] = 1470304637,
         ["judge"] = "reject",
-        ["reaponse"] = '{"status:400, "message":"illegal device"}',
+        ["response"] = '{"status:400, "message":"illegal device"}',
     },
 }
 
