@@ -52,6 +52,10 @@
 
    Nginx <-- Redis <-- MySQL <-- Restful(http server) <-- (各种风控系统)
 
+   或者
+
+   Nginx <-- config.yaml <-- (各种风控系统)
+
 * 事件流
 
   更新规则 -> 实时生效(需要主要触发事件)
