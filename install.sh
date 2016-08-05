@@ -13,3 +13,5 @@ fi
 /bin/cp -f restart.sh $dir
 /bin/cp -f startup.sh $dir
 /bin/cp -f nginx.conf $root/nginx/conf/
+
+echo "install to $dir: ok"
