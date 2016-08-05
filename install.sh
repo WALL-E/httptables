@@ -14,19 +14,18 @@ cd `dirname $0`
 ./openresty-depends.sh
 cd -
 
-OLD=`pwd`
-cd /tmp/
-wget https://openresty.org/download/openresty-1.9.15.1.tar.gz
-tar zxvf openresty-1.9.15.1.tar.gz
-cd openresty-1.9.15.1/
-./configure --prefix=$root --with-http_realip_module 
-gmake
-gmake install
-cd $OLD
-
 dir=$root/nginx/conf/httptables
 
 if [ ! -x "$dir" ]; then
+    OLD=`pwd`
+    cd /tmp/
+    wget https://openresty.org/download/openresty-1.9.15.1.tar.gz
+    tar zxvf openresty-1.9.15.1.tar.gz
+    cd openresty-1.9.15.1/
+    ./configure --prefix=$root --with-http_realip_module 
+    gmake
+    gmake install
+    cd $OLD
     mkdir $dir
 fi
 
