@@ -1,7 +1,7 @@
 
 local _M = {}
 
-local tables = {
+local role_types = {
     {
         ["name"] = "origin",
         ["priority"] = 3,
@@ -63,7 +63,7 @@ local roles = {
 
 
 
-_M.tables = tables
+_M.role_types = role_types
 _M.roles = roles
 
 return _M

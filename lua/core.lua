@@ -4,10 +4,10 @@ local cjson = require "cjson.safe"
 local data = require "data"
 local utils = require "utils"
 
-ngx.log(ngx.INFO, "tables: ", cjson.encode(data.tables))
+ngx.log(ngx.INFO, "role_types: ", cjson.encode(data.role_types))
 ngx.log(ngx.INFO, "roles: ", cjson.encode(data.roles))
 
-local sorted_tables = utils.deep_copy(data.tables)
+local sorted_role_types = utils.deep_copy(data.role_types)
 
 local marks = {}
 marks.origin = ngx.var.remote_addr
@@ -24,8 +24,8 @@ local idx
 function comps(a, b)
     return a.priority < b.priority
 end
-table.sort(sorted_tables, comps)
-ngx.log(ngx.INFO, "sorted_tables: ", cjson.encode(sorted_tables))
+table.sort(sorted_role_types, comps)
+ngx.log(ngx.INFO, "sorted_role_types: ", cjson.encode(sorted_role_types))
 
 if not marks.device then
     ngx.log(ngx.INFO, "device_id is nil")
