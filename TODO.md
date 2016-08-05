@@ -17,6 +17,15 @@
   * get /apis/roles
   
     返回所有规则，josn格式
+
+  
+  * get /admin/sync
+  
+    更新规则，立即从配置源获取最新配置
+
+  * get /admin/status
+  
+    查看规则事件统计
   
 * 优化规则查找方式
 
