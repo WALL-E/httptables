@@ -45,14 +45,14 @@ for _,v  in pairs(data.roles) do
     if (v["createtime"] + v["ttl"] ) > timestamp then
         ngx.log(ngx.INFO, "XXXX 1,", method)
         -- 检查请求方法
-        idx,_ = string.find(v["method"], string.lower(method))
+        idx,_ = ngx.re.find(v["method"], string.lower(method))
         if idx then
             ngx.log(ngx.INFO, "XXXX 2, ", uri)
             -- 检查URI
             if uri == v["uri"] then
                 ngx.log(ngx.INFO, "XXXX 3, ", v["type"], ",", v["mark"])
                 -- 检查mark
-                idx,_ = string.find(v["mark"], marks[v["type"]])
+                idx,_ = ngx.re.find(v["mark"], marks[v["type"]])
                 if idx then
                     ngx.log(ngx.INFO, "XXXX 4")
                     ngx.say(v["response"])
