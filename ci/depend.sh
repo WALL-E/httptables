@@ -1,7 +1,7 @@
 #!/bin/bash
 
-sudo yum install nodejs
-sudo yum install npm
+sudo yum install -y nodejs
+sudo yum install -y npm
 
 npm install -g jasmine-node
 
