@@ -1,13 +1,12 @@
 
 local ngx = require "ngx"
 local cjson = require "cjson.safe"
-local data = require "data"
 local utils = require "utils"
 
-ngx.log(ngx.INFO, "role_types: ", cjson.encode(data.role_types))
-ngx.log(ngx.INFO, "roles: ", cjson.encode(data.roles))
+ngx.log(ngx.INFO, "shared_role_types: ", cjson.encode(shared_role_types))
+ngx.log(ngx.INFO, "shared_roles: ", cjson.encode(shared_roles))
 
-local sorted_role_types = utils.deep_copy(data.role_types)
+local sorted_role_types = utils.deep_copy(shared_role_types)
 
 local marks = {}
 marks.origin = ngx.var.remote_addr
@@ -39,7 +38,7 @@ end
 
 ngx.log(ngx.INFO, "XXXXXX")
 -- origins
-for _,v  in pairs(data.roles) do
+for _,v  in pairs(shared_roles) do
     ngx.log(ngx.INFO, "XXXX 0")
     -- 检查规则有效期
     if (v["createtime"] + v["ttl"] ) > timestamp then

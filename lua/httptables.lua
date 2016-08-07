@@ -6,8 +6,8 @@ local ngx = require "ngx"
 local cjson = require "cjson"
 local policy = require "policy"
 
-share_role_types = nil
-share_roles = nil
+shared_role_types = nil
+shared_roles = nil
 
 
 function _M.init()
@@ -27,6 +27,9 @@ function _M.init_worker()
 
     ngx.log(ngx.INFO, "role_types_josn: ", role_types_json)
     ngx.log(ngx.INFO, "roles_json: ", roles_json)
+
+    shared_role_types = cjson.decode(role_types_json)
+    shared_roles = cjson.decode(roles_json)
 end
 
 return _M
