@@ -4,7 +4,12 @@ local cjson = require "cjson.safe"
 local utils = require "utils"
 local lib = require "lib"
 
-local center_version_counter = lib.get_version_counter()
+local center_version_counter = lib.get_center_version_counter()
+if center_version_counter == 0 then
+    lib.load_policy_from_redis()
+    lib.increase_version_counter()
+end
+
 if shared_version_counter < center_version_counter then
     lib.load_policy_from_redis()
     shared_version_counter = center_version_counter

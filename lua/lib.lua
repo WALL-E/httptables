@@ -25,7 +25,7 @@ function _M.increase_version_counter()
     ngx.log(ngx.INFO, "[lib:increase_version_counter] version_counter 2: ", version_counter)
 end
 
-function _M.get_version_counter()
+function _M.get_center_version_counter()
     local data = ngx.shared.data
     return data:get("version_counter")
 end

@@ -37,13 +37,13 @@ end
 
 function _M.sync()
     lib.increase_version_counter()
-    local response = string.format('{"status":200, "message":"ok", "result": {"version_counter": %s}}', lib.get_version_counter())
+    local response = string.format('{"status":200, "message":"ok", "result": {"center_version_counter": %s}}', lib.get_center_version_counter())
     ngx.say(response)
 end
 
 function _M.status()
     local status = {
-        ["center_version_counter"] = lib.get_version_counter(),
+        ["center_version_counter"] = lib.get_center_version_counter(),
         ["shared_version_counter"] = shared_version_counter,
     }
     local response = string.format('{"status":200, "message":"ok", "result": %s}', cjson.encode(status))
