@@ -44,6 +44,7 @@ end
 function _M.status()
     local status = {
         ["version_counter"] = lib.get_version_counter(),
+        ["version_counter"] = shared_version_counter,
     }
     local reponse = string.format('{"status":200, "message":"ok", "result": %s}', cjson.encode(status))
     ngx.say(reponse)
