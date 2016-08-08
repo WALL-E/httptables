@@ -5,6 +5,7 @@ local _M = {}
 local ngx = require "ngx"
 local cjson = require "cjson"
 local policy = require "policy"
+local redis_api = require "redis_api"
 
 shared_role_types = nil
 shared_roles = nil
@@ -37,6 +38,36 @@ function _M.load_policy_from_lua()
     _M.increase_version_counter()
     data:set("role_types_json", policy.role_types_json)
     data:set("roles_json", policy.roles_json)
+end
+
+-- load config to lua_shared_dict from Redis
+function _M.load_policy_from_redis()
+    ngx.log(ngx.INFO, "[lib] load_policy_from_redis")
+    local rds, err = redis_api.open_redis()
+    if not rds then
+        local response = '{"status": 500, "message":"连接redis失败"}'
+        ngx.say(response)
+        ngx.exit(ngx.HTTP_OK)
+    end
+
+    local role_types_json, err = rds:hget("__httptables__", "role_types")
+    if role_types_json == ngx.null or not role_types_json then
+        local response = '{"status": 500, "message":"从redis读取role_types_json失败"}'
+        ngx.say(response)
+        ngx.exit(ngx.HTTP_OK)
+    end
+
+    local roles_json, err = rds:hget("__httptables__", "roles")
+    if roles_json == ngx.null or not roles_json then
+        local response = '{"status": 500, "message":"从redis读取roles_json失败"}'
+        ngx.say(response)
+        ngx.exit(ngx.HTTP_OK)
+    end
+
+    local data = ngx.shared.data
+    _M.increase_version_counter()
+    data:set("role_types_json", role_types_json)
+    data:set("roles_json", roles_json)
 end
 
 -- load config to woeker's var from lua_shared_dict

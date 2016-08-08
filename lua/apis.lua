@@ -43,7 +43,7 @@ end
 
 function _M.status()
     local status = {
-        ["version_counter"] = lib.get_version_counter(),
+        ["center_version_counter"] = lib.get_version_counter(),
         ["shared_version_counter"] = shared_version_counter,
     }
     local response = string.format('{"status":200, "message":"ok", "result": %s}', cjson.encode(status))
