@@ -8,11 +8,10 @@ ngx.log(ngx.INFO, "shared_roles: ", cjson.encode(shared_roles))
 
 local sorted_role_types = utils.deep_copy(shared_role_types)
 
-local marks = {}
-marks.origin = ngx.var.remote_addr
-marks.device = ngx.req.get_headers()["X-Device-ID"]
-marks.user = ngx.req.get_headers()["X-User-ID"]
-ngx.log(ngx.INFO, "marks: ", cjson.encode(marks))
+local mark_funcions = {}
+for _,v  in pairs(shared_role_types) do
+    mark_funcions[v.name] = loadstring(v.lamda)
+end
 
 local uri = ngx.var.uri
 local method = ngx.req.get_method()
@@ -26,17 +25,13 @@ end
 table.sort(sorted_role_types, comps)
 ngx.log(ngx.INFO, "sorted_role_types: ", cjson.encode(sorted_role_types))
 
-if not marks.device then
-    ngx.log(ngx.INFO, "device_id is nil")
-    ngx.exit(ngx.OK)
+for name,f in pairs(mark_funcions) do
+    if not f() then
+        ngx.log(ngx.INFO, string.format("mark[%s] is nil", name))
+        ngx.exit(ngx.OK)
+    end
 end
 
-if not marks.user then
-    ngx.log(ngx.INFO, "user_id is nil")
-    ngx.exit(ngx.OK)
-end
-
-ngx.log(ngx.INFO, "XXXXXX")
 -- origins
 for _,v  in pairs(shared_roles) do
     ngx.log(ngx.INFO, "XXXX 0")
@@ -51,7 +46,7 @@ for _,v  in pairs(shared_roles) do
             if uri == v["uri"] then
                 ngx.log(ngx.INFO, "XXXX 3, ", v["type"], ",", v["mark"])
                 -- 检查mark
-                idx,_ = ngx.re.find(v["mark"], marks[v["type"]])
+                idx,_ = ngx.re.find(v["mark"], mark_funcions[v["type"]]())
                 if idx then
                     ngx.log(ngx.INFO, "XXXX 4")
                     ngx.say(v["response"])
