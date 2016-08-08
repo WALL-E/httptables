@@ -8,11 +8,33 @@ local policy = require "policy"
 
 shared_role_types = nil
 shared_roles = nil
+shared_version_counter = 0
+
+function _M.increase_version_counter()
+    local data = ngx.shared.data
+
+    local version_counter = data:get("version_counter")
+    if not version_counter then
+        version_counter = 1
+    else
+        version_counter = version_counter + 1
+    end
+
+    data:set("version_counter", version_counter)
+    ngx.log(ngx.INFO, "[lib:increase_version_counter] version_counter 2: ", version_counter)
+end
+
+function _M.get_version_counter()
+    local data = ngx.shared.data
+    return data:get("version_counter")
+end
+
 
 -- load config to lua_shared_dict
 function _M.load_policy_from_lua()
     ngx.log(ngx.INFO, "[lib] load_policy_from_lua")
     local data = ngx.shared.data
+    _M.increase_version_counter()
     data:set("role_types_json", policy.role_types_json)
     data:set("roles_json", policy.roles_json)
 end
