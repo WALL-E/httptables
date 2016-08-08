@@ -26,28 +26,28 @@ function _M.default()
 end
 
 function _M.roles()
-    local reponse = string.format('{"status":200, "message":"ok", result:%s}', cjson.encode(shared_roles))
-    ngx.say(reponse)
+    local response = string.format('{"status":200, "message":"ok", result:%s}', cjson.encode(shared_roles))
+    ngx.say(response)
 end
 
 function _M.role_types()
-    local reponse = string.format('{"status":200, "message":"ok", result:%s}', cjson.encode(shared_role_types))
-    ngx.say(reponse)
+    local response = string.format('{"status":200, "message":"ok", result:%s}', cjson.encode(shared_role_types))
+    ngx.say(response)
 end
 
 function _M.sync()
     lib.increase_version_counter()
-    local reponse = string.format('{"status":200, "message":"ok", "result": {"version_counter": %s}}', lib.get_version_counter())
-    ngx.say(reponse)
+    local response = string.format('{"status":200, "message":"ok", "result": {"version_counter": %s}}', lib.get_version_counter())
+    ngx.say(response)
 end
 
 function _M.status()
     local status = {
         ["version_counter"] = lib.get_version_counter(),
-        ["version_counter"] = shared_version_counter,
+        ["shared_version_counter"] = shared_version_counter,
     }
-    local reponse = string.format('{"status":200, "message":"ok", "result": %s}', cjson.encode(status))
-    ngx.say(reponse)
+    local response = string.format('{"status":200, "message":"ok", "result": %s}', cjson.encode(status))
+    ngx.say(response)
 end
 
 
