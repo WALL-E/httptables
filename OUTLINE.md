@@ -40,7 +40,7 @@
 * attr，规则属性
   * uri
   * method 请求方法
-* ttl 生效时间
+* expired 失效时间
 * action 动作
 * response 自定义响应内容
 
@@ -113,7 +113,7 @@
 | uri    | 字符串(1024)    | 请求地址，不包含query参数    |
 | method    | 字符串(64)    | 请求方法，多个值以逗号分隔    |
 | createtime    | 整型    |  规则创建时间   |
-| ttl    | 整型    |  规则生效时间(秒)，0表示永久   |
+| expired    | 整型    |  规则失效时间(unix timestamp)   |
 | action    | 字符串(64)    |   目前仅支持reject、delay(毫秒)  |
 | response    | json字符串(1024)    |   响应体内容，需要符合resthub规范(可选)  |
 

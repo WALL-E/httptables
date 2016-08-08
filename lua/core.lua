@@ -41,7 +41,7 @@ ngx.log(ngx.INFO, "XXXXXX")
 for _,v  in pairs(shared_roles) do
     ngx.log(ngx.INFO, "XXXX 0")
     -- 检查规则有效期
-    if (v["createtime"] + v["ttl"] ) > timestamp then
+    if ["expired"] > timestamp then
         ngx.log(ngx.INFO, "XXXX 1,", method)
         -- 检查请求方法
         idx,_ = ngx.re.find(v["method"], string.lower(method))
