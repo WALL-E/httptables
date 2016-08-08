@@ -3,33 +3,16 @@
 local _M = {}
 
 local ngx = require "ngx"
-local cjson = require "cjson"
-local policy = require "policy"
-
-shared_role_types = nil
-shared_roles = nil
-
+local lib = require "lib"
 
 function _M.init()
     ngx.log(ngx.INFO, "[Global] init")
-    
-    local data = ngx.shared.data
-    data:set("role_types_json", policy.role_types_json)
-    data:set("roles_json", policy.roles_json)
+    lib.load_policy_from_lua()    
 end
 
 function _M.init_worker()
     ngx.log(ngx.INFO, "[Global] init_worker")
-
-    local data = ngx.shared.data
-    local role_types_json = data:get("role_types_json")
-    local roles_json = data:get("roles_json")
-
-    ngx.log(ngx.INFO, "role_types_josn: ", role_types_json)
-    ngx.log(ngx.INFO, "roles_json: ", roles_json)
-
-    shared_role_types = cjson.decode(role_types_json)
-    shared_roles = cjson.decode(roles_json)
+    lib.update_worker_policy()
 end
 
 return _M
