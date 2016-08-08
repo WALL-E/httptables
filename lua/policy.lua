@@ -22,7 +22,7 @@ _M.role_types_json = [==[
 
 _M.roles_json = [==[
 [
-	{
+    {
 	    "response":"{\"status\":4001, \"message\":\"illegal origin\"}",
 	    "method":"get,post",
 	    "uri":"\/test\/origin",
@@ -31,7 +31,7 @@ _M.roles_json = [==[
 	    "ttl":360000,
 	    "createtime":1470304637,
 	    "mark":"127.0.0.1"
-	},
+    },
     {
     	"response":"{\"status\":4003, \"message\":\"illegal device\"}",
     	"method":"post",
