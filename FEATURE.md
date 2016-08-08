@@ -1,9 +1,5 @@
 # Feature
 
-* lamda
-  
-  支持用户自定义mark的来源方式，使用lua的loadstring实现
-  
 * 加载配置
 
   支持多种方式加载配置(json格式)，local、redis、http、etcd，同时允许一种生效。
