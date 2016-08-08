@@ -51,10 +51,7 @@
 * 数据流
 
    Nginx <-- Redis <-- MySQL <-- Restful(http server) <-- (各种风控系统)
-
-   或者
-
-   Nginx <-- config.yaml <-- (各种风控系统)
+   Nginx <-- etcd <-- htctl(command)
 
 * 事件流
 
