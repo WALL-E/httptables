@@ -6,19 +6,20 @@ _M.role_types_json = [==[
 	{
 		"enable": 1,
 		"name":"origin",
-		"priority":3
+		"priority":3,
                 "lamda": "function () {return ngx.var.remote_addr}"
 	},
 	{
 		"enable":1,
 		"name":"device",
-		"priority":2},
-                "lamda": "function () {return ngx.req.get_headers()[\"X-Device-ID\"]}"
+		"priority":2,
+                "lamda": "function () {return ngx.req.get_headers()['X-Device-ID']}"
+        },
 	{
 		"enable":1,
 		"name":"user",
-		"priority":1
-                "lamda": "function () {return ngx.req.get_headers()[\"X-User-ID\"]}"
+		"priority":1,
+                "lamda": "function () {return ngx.req.get_headers()['X-User-ID']}"
 	}
 ]
 ]==]
