@@ -4,40 +4,35 @@ local _M = {}
 
 local ngx = require "ngx"
 local cjson = require "cjson"
-local policy = require "policy"
 local redis_api = require "redis_api"
 
-shared_role_types = nil
-shared_roles = nil
+shared_role_types = {}
+shared_roles = {}
 shared_version_counter = 0
 
-function _M.increase_version_counter()
+
+function _M.get_shared_version_counter(v)
+    return shared_version_counter
+end
+
+function _M.set_shared_version_counter(v)
+    shared_version_counter = v
+end
+
+function _M.increase_center_version_counter()
+    local counter = _M.get_center_version_counter()
+    counter = counter + 1
+    _M.set_center_version_counter(counter)
+end
+
+function _M.set_center_version_counter(v)
     local data = ngx.shared.data
-
-    local version_counter = data:get("version_counter")
-    if not version_counter then
-        version_counter = 1
-    else
-        version_counter = version_counter + 1
-    end
-
-    data:set("version_counter", version_counter)
-    ngx.log(ngx.INFO, "[lib:increase_version_counter] version_counter 2: ", version_counter)
+    data:set("center_version_counter", v)
 end
 
 function _M.get_center_version_counter()
     local data = ngx.shared.data
-    return data:get("version_counter")
-end
-
-
--- load config to lua_shared_dict
-function _M.load_policy_from_lua()
-    ngx.log(ngx.INFO, "[lib] load_policy_from_lua")
-    local data = ngx.shared.data
-    _M.increase_version_counter()
-    data:set("role_types_json", policy.role_types_json)
-    data:set("roles_json", policy.roles_json)
+    return data:get("center_version_counter")
 end
 
 -- load config to lua_shared_dict from Redis
@@ -65,9 +60,8 @@ function _M.load_policy_from_redis()
     end
 
     local data = ngx.shared.data
-    _M.increase_version_counter()
-    data:set("role_types_json", role_types_json)
-    data:set("roles_json", roles_json)
+    shared_role_types = cjson.decode(role_types_json)
+    shared_roles = cjson.decode(roles_json)
 end
 
 -- load config to woeker's var from lua_shared_dict

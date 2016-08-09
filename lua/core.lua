@@ -7,13 +7,12 @@ local lib = require "lib"
 local center_version_counter = lib.get_center_version_counter()
 if center_version_counter == 0 then
     lib.load_policy_from_redis()
-    lib.increase_version_counter()
+    lib.increase_center_version_counter()
 end
-
-if shared_version_counter < center_version_counter then
+if lib.get_shared_version_counter() < center_version_counter then
     lib.load_policy_from_redis()
-    shared_version_counter = center_version_counter
-    ngx.log(ngx.INFO, "XXXXX shared_role_types: ", shared_version_counter)
+    lib.set_shared_version_counter(center_version_counter)
+    ngx.log(ngx.INFO, "XXXXX shared_role_types: ", lib.get_shared_version_counter())
 end
 
 ngx.log(ngx.INFO, "shared_role_types: ", cjson.encode(shared_role_types))
