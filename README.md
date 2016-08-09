@@ -28,7 +28,7 @@ cd openresty-1.9.15.1/
 ## 安装httptables
 下载后，直接运行install.sh即可
 
-# Copyright
+# Copyleft
 感谢以下项开源目
 
 * OpenResty
