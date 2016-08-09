@@ -1,4 +1,3 @@
-
 http {
   # IP Address
   real_ip_header X-Forwarded-For;
@@ -6,7 +5,8 @@ http {
   real_ip_recursive on;
 
   # Lua Settings
-  lua_package_path 'conf/httptables/lua/?.lua;conf/httptables/lua/api/?.lua;conf/httptables/lua/core/?.lua;;';
+  lua_package_path 'conf/httptables/lua/?.lua;;';
+  lua_code_cache on;
   lua_shared_dict data 5m;
   lua_socket_log_errors off;
 
@@ -23,18 +23,9 @@ http {
     server_name _;
     listen 0.0.0.0:8000;
 
-    client_max_body_size 10m;
-    client_body_buffer_size 10m;
-
     location / {
-      default_type 'text/plain';
-
       # HttpTables Core
-      access_by_lua_file conf/httptables/lua/core/app.lua;
-
-      content_by_lua_block {
-        ngx.print("hello, httptables");
-      }
+      access_by_lua_file conf/httptables/lua/core.lua;
     }
   }
 
@@ -44,9 +35,49 @@ http {
     client_max_body_size 10m;
     client_body_buffer_size 10m;
 
+    access_by_lua_block {
+        apis = require "apis"
+        apis.cors()
+    }
+
     location / {
         default_type application/json;
-        content_by_lua_file conf/httptables/lua/api/app.lua;
+        content_by_lua_block {
+            apis = require "apis"
+            apis.default()
+        }
+    }
+
+    location /admin/role_types {
+        default_type application/json;
+        content_by_lua_block {
+            apis = require "apis"
+            apis.role_types()
+        }
+    }
+
+    location /admin/roles {
+        default_type application/json;
+        content_by_lua_block {
+            apis = require "apis"
+            apis.roles()
+        }
+    }
+
+    location /admin/sync {
+        default_type application/json;
+        content_by_lua_block {
+            apis = require "apis"
+            apis.sync()
+        }
+    }
+
+    location /admin/status {
+        default_type application/json;
+        content_by_lua_block {
+            apis = require "apis"
+            apis.status()
+        }
     }
 
     location /robots.txt {
