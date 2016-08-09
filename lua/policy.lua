@@ -19,7 +19,7 @@ function _M.try_reload_policy()
     local center_version_counter = _M.get_center_version_counter()
     if _M.get_shared_version_counter() < center_version_counter and not shared_sync_pending then
         shared_sync_pending = true
-        local ret = _M.load_policy_from_http2()
+        local ret = _M.load_policy_from_http()
         if ret then
             _M.set_shared_version_counter(center_version_counter)
             ngx.log(ngx.INFO, "[try_reload_policy] shared_version_counte: ", _M.get_shared_version_counter(), 
@@ -88,16 +88,16 @@ function _M.load_policy_from_redis()
     return true
 end
 
--- load config to lua_shared_dict from Redis
-function _M.load_policy_from_http2()
-    ngx.log(ngx.INFO, "[policy] load_policy_from_http2")
+-- load config to lua_shared_dict from HTTP
+function _M.load_policy_from_http()
+    ngx.log(ngx.INFO, "[policy] load_policy_from_http")
     local data = ngx.shared.data
     local httpc = http.new()
     local role_types, roles
 
     local res, err = httpc:request_uri(config.http_endpoint.role_types, {})
     if not res then
-        ngx.log(ngx.ERR, "[load_policy_from_http2] request_uri role_types failed")
+        ngx.log(ngx.ERR, "[load_policy_from_http] request_uri role_types failed")
         return false
     end
     if res.status == ngx.HTTP_OK then
@@ -110,7 +110,7 @@ function _M.load_policy_from_http2()
 
     res, err = httpc:request_uri(config.http_endpoint.roles, {})
     if not res then
-        ngx.log(ngx.ERR, "[load_policy_from_http2] request_uri roles failed")
+        ngx.log(ngx.ERR, "[load_policy_from_http] request_uri roles failed")
         return false
     end
     if res.status == ngx.HTTP_OK then
@@ -121,34 +121,6 @@ function _M.load_policy_from_http2()
     end
     shared_roles = utils.deep_copy(roles.result)
 
-    return true
-end
-
--- load config to lua_shared_dict from Redis
-function _M.load_policy_from_http()
-    ngx.log(ngx.INFO, "[policy] load_policy_from_http")
-    local role_types = nil
-    local roles = nil
-
-    local res = ngx.location.capture(config.http_endpoint.role_types)
-    if res.status == ngx.HTTP_OK and not res.truncated then
-        role_types = cjson.decode(res.body)    
-    else
-        ngx.log(ngx.ERR, "[load_policy_from_http] role_types:", res.status, ", truncated:", res.truncated)
-        return false
-    end
-
-    res = ngx.location.capture(config.http_endpoint.roles)
-    if res.status == ngx.HTTP_OK and not res.truncated then
-        roles = cjson.decode(res.body)    
-    else
-        ngx.log(ngx.ERR, "[load_policy_from_http] roles:", res.status, ", truncated:", res.truncated)
-        return false
-    end
-
-    local data = ngx.shared.data
-    shared_role_types = utils.deep_copy(role_types.result)
-    shared_roles = utils.deep_copy(roles.result)
     return true
 end
 
