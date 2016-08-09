@@ -51,7 +51,7 @@ for _,v  in pairs(shared_roles) do
                 -- 检查mark
                 idx,_ = ngx.re.find(v["mark"], mark_funcions[v["type"]]())
                 if idx then
-                    ngx.log(ngx.INFO, "XXXX 4")
+                    ngx.log(ngx.NOTICE, string.format("action:%s, uri:%s, method:%s, mark:%s", v["action"], uri, method, v["mark"]))
                     ngx.say(v["response"])
                     ngx.exit(ngx.HTTP_OK)
                 end
