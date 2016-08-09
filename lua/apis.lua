@@ -35,7 +35,7 @@ function _M.role_types()
     ngx.say(response)
 end
 
-function _M.sync()
+function _M.notify()
     policy.increase_center_version_counter()
     local response = string.format('{"status":200, "message":"ok", "result": {"center_version_counter": %s}}', policy.get_center_version_counter())
     ngx.say(response)
