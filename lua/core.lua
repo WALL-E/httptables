@@ -13,10 +13,7 @@ policy.try_reload_policy()
 
 local sorted_role_types = utils.deep_copy(shared_role_types)
 
-local mark_funcions = {}
-for _,v  in pairs(shared_role_types) do
-    mark_funcions[v.name] = loadstring(v.lamda)
-end
+local mark_funcions = policy.get_shared_mark_functions()
 
 local uri = ngx.var.uri
 local method = ngx.req.get_method()

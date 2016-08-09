@@ -13,6 +13,7 @@ shared_role_types = {}
 shared_roles = {}
 shared_version_counter = 0
 shared_sync_pending = false
+shared_mark_funcions = {}
 
 function _M.try_reload_policy()
     local center_version_counter = _M.get_center_version_counter()
@@ -23,9 +24,17 @@ function _M.try_reload_policy()
             _M.set_shared_version_counter(center_version_counter)
             ngx.log(ngx.INFO, "[try_reload_policy] shared_version_counte: ", _M.get_shared_version_counter(), 
                               ", center_version_counter:", _M.get_center_version_counter())
+            --reload lamda
+            for _,v in pairs(shared_role_types) do
+                shared_mark_funcions[v.name] = loadstring(v.lamda)
+            end
         end
         shared_sync_pending = false
     end
+end
+
+function _M.get_shared_mark_functions()
+    return shared_mark_funcions
 end
 
 function _M.get_shared_version_counter(v)
