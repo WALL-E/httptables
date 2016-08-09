@@ -4,15 +4,16 @@ local cjson = require "cjson.safe"
 local utils = require "utils"
 local lib = require "lib"
 
-local center_version_counter = lib.get_center_version_counter()
-if center_version_counter == 0 then
-    lib.load_policy_from_redis()
+if lib.get_center_version_counter() == 0 then
     lib.increase_center_version_counter()
 end
+local center_version_counter = lib.get_center_version_counter()
 if lib.get_shared_version_counter() < center_version_counter then
-    lib.load_policy_from_redis()
-    lib.set_shared_version_counter(center_version_counter)
-    ngx.log(ngx.INFO, "XXXXX shared_role_types: ", lib.get_shared_version_counter())
+    local ret = lib.load_policy_from_redis()
+    if ret then
+        lib.set_shared_version_counter(center_version_counter)
+        ngx.log(ngx.INFO, "shared_role_types: ", lib.get_shared_version_counter())
+    end
 end
 
 ngx.log(ngx.INFO, "shared_role_types: ", cjson.encode(shared_role_types))
