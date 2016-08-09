@@ -1,23 +1,23 @@
 # httptables (just like Linux's iptables)
-httptables是一个基于OpenResty，面向web应用的轻量级（Lightweight）软防火墙，可以配合第三方系统（用户行为分析系统）针对符合特定条件的HTTP请求做不同的处理。
+httptables is a based on the [Openresty](#OpenResty), lightweight soft firewall for web application, can cooperate with the third party system(User behavior analysis system), to respond to a malicious request.
 
 
 Design details please click [OUTLINE.md](OUTLINE.md)。
 
 ## World views 
-httptables的世界里，每个客户端有三种独立身份，并且每种身份都是唯一标识
+In her world, each client has three separate identity, and each is unique
 
-* `Origin` 来源IP地址
-* `User`   用户ID
-* `Device` 设备ID
+* `Origin` The source address of client
+* `User`   The User ID
+* `Device` The Device ID
 
 ## Features
 Support the following features
 
 * circuit breakers
-  * **Reject** 阻断用户访问，返回自定义内容响应体
+  * **Reject** Blocking the user requests, return the response of custom content
 * speed bump
-  * **Defer** 放慢用户的请求速度
+  * **Defer** SLowing down of the request of the user
 
 ## Install
 Please click [INSTALL.md](doc/INSTALL.md) to view the installation documentation
@@ -27,7 +27,7 @@ Please click [INSTALL.md](doc/INSTALL.md) to view the installation documentation
 Thank you for the following open source projects
 
 
-* OpenResty
+* <span id = "OpenResty">OpenResty</span>
 
   [OpenResty](https://openresty.org/en/) OpenResty ™ is a full-fledged web platform by integrating the standard Nginx core, LuaJIT, many carefully written Lua libraries, lots of high quality 3rd-party Nginx modules, and most of their external dependencies. It is designed to help developers easily build scalable web applications, web services, and dynamic web gateways.
 
