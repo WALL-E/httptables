@@ -42,7 +42,7 @@ for _,v  in pairs(shared_roles) do
     if v["expired"] > timestamp then
         ngx.log(ngx.INFO, "XXXX 1,", method)
         -- 检查请求方法
-        idx,_ = ngx.re.find(v["method"], string.lower(method))
+        idx,_ = ngx.re.find(string.lower(v["method"]), string.lower(method))
         if idx then
             ngx.log(ngx.INFO, "XXXX 2, ", uri)
             -- 检查URI
