@@ -26,17 +26,17 @@ role_types = [
 
 roles = [
     {
-	    "response":{"status":4001, "message":"illegal origin"},
-	    "method":"get,post",
-	    "uri":"/test/origin",
-	    "action":"reject",
-	    "type":"origin",
-	    "expired":1480626687,
-	    "createtime":1470304637,
-	    "mark":"127.0.0.1"
+        "response":'{"status":4001, "message":"illegal origin"}',
+        "method":"get,post",
+        "uri":"/test/origin",
+        "action":"reject",
+        "type":"origin",
+        "expired":1480626687,
+        "createtime":1470304637,
+        "mark":"127.0.0.1"
     },
     {
-    	"response":{"status":4003, "message":"illegal device"},
+    	"response":'{"status":4003, "message":"illegal device"}',
     	"method":"post",
     	"uri":"/test/device",
     	"action":"reject",
@@ -46,7 +46,7 @@ roles = [
     	"mark":"device_1"
     },
     {
-    	"response":{"status":4002, "message":"illegal user"},
+    	"response":'{"status":4002, "message":"illegal user"}',
     	"method":"get",
     	"uri":"/test/user",
     	"action":"reject",
