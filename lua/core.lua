@@ -6,8 +6,8 @@ local policy = require "policy"
 
 policy.try_reload_policy()
 
-ngx.log(ngx.INFO, "shared_role_types: ", cjson.encode(shared_role_types))
-ngx.log(ngx.INFO, "shared_roles: ", cjson.encode(shared_roles))
+--ngx.log(ngx.INFO, "shared_role_types: ", cjson.encode(shared_role_types))
+--ngx.log(ngx.INFO, "shared_roles: ", cjson.encode(shared_roles))
 
 local sorted_role_types = utils.deep_copy(shared_role_types)
 
