@@ -9,7 +9,21 @@ local redis_api = require "redis_api"
 shared_role_types = {}
 shared_roles = {}
 shared_version_counter = 0
+shared_sync_pending = false
 
+function _M.try_reload_policy()
+    local center_version_counter = _M.get_center_version_counter()
+    if _M.get_shared_version_counter() < center_version_counter and not shared_sync_pending then
+        shared_sync_pending = true
+        local ret = _M.load_policy_from_redis()
+        if ret then
+            _M.set_shared_version_counter(center_version_counter)
+            ngx.log(ngx.INFO, "[try_reload_policy] shared_version_counte: ", _M.get_shared_version_counter(), 
+                              ", center_version_counter:", _M.get_center_version_counter())
+        end
+        shared_sync_pending = false
+    end
+end
 
 function _M.get_shared_version_counter(v)
     return shared_version_counter
@@ -37,7 +51,7 @@ end
 
 -- load config to lua_shared_dict from Redis
 function _M.load_policy_from_redis()
-    ngx.log(ngx.INFO, "[lib] load_policy_from_redis")
+    ngx.log(ngx.INFO, "[policy] load_policy_from_redis")
     local rds, err = redis_api.open_redis()
     if not rds then
         ngx.log(ngx.ERR, "connect redis failed")
@@ -64,7 +78,7 @@ end
 
 -- load config to woeker's var from lua_shared_dict
 function _M.update_worker_policy()
-    ngx.log(ngx.INFO, "[lib] update_woker_policy")
+    ngx.log(ngx.INFO, "[policy] update_woker_policy")
 
     local data = ngx.shared.data
     local role_types_json = data:get("role_types_json")

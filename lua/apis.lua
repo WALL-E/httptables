@@ -3,7 +3,7 @@ local meta = require "meta"
 local ngx = require "ngx"
 local cjson = require "cjson.safe"
 cjson.encode_sparse_array(true)
-local lib = require "lib"
+local policy = require "policy"
 
 _G._HTTPTABLES = {
   _NAME = meta._NAME,
@@ -36,14 +36,14 @@ function _M.role_types()
 end
 
 function _M.sync()
-    lib.increase_center_version_counter()
-    local response = string.format('{"status":200, "message":"ok", "result": {"center_version_counter": %s}}', lib.get_center_version_counter())
+    policy.increase_center_version_counter()
+    local response = string.format('{"status":200, "message":"ok", "result": {"center_version_counter": %s}}', policy.get_center_version_counter())
     ngx.say(response)
 end
 
 function _M.status()
     local status = {
-        ["center_version_counter"] = lib.get_center_version_counter(),
+        ["center_version_counter"] = policy.get_center_version_counter(),
         ["shared_version_counter"] = shared_version_counter,
     }
     local response = string.format('{"status":200, "message":"ok", "result": %s}', cjson.encode(status))

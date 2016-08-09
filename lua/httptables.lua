@@ -3,11 +3,11 @@
 local _M = {}
 
 local ngx = require "ngx"
-local lib = require "lib"
+local policy = require "policy"
 
 function _M.init()
     ngx.log(ngx.INFO, "[Global] init")
-    lib.set_center_version_counter(0)
+    policy.set_center_version_counter(1)
 end
 
 function _M.init_worker()
