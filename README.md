@@ -1,5 +1,5 @@
 # httptables (just like Linux's iptables)
-httptables is a based on the [OpenResty](#OpenResty), lightweight soft firewall for web application, can cooperate with the third party system(User behavior analysis system), to respond to a malicious request.
+httptables is a based on the [OpenResty](https://openresty.org/en/), lightweight soft firewall for web application, can cooperate with the third party system(User behavior analysis system), to respond to a malicious request.
 
 
 Design details please click [OUTLINE.md](OUTLINE.md)。
