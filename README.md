@@ -27,9 +27,9 @@ Please click [INSTALL.md](doc/INSTALL.md) to view the installation documentation
 Thank you for the following open source projects
 
 
-* <span id = "OpenResty">OpenResty</span>
+* OpenResty
 
-  [OpenResty](https://openresty.org/en/) OpenResty ™ is a full-fledged web platform by integrating the standard Nginx core, LuaJIT, many carefully written Lua libraries, lots of high quality 3rd-party Nginx modules, and most of their external dependencies. It is designed to help developers easily build scalable web applications, web services, and dynamic web gateways.
+  <span id = "OpenResty">[OpenResty](https://openresty.org/en/)™</span> is a full-fledged web platform by integrating the standard Nginx core, LuaJIT, many carefully written Lua libraries, lots of high quality 3rd-party Nginx modules, and most of their external dependencies. It is designed to help developers easily build scalable web applications, web services, and dynamic web gateways.
 
 * Kong
 
