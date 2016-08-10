@@ -53,15 +53,15 @@ for _,v  in pairs(shared_roles) do
                 -- 检查mark
                 idx,_ = ngx.re.find(v["mark"], mark_funcions[v["type"]]())
                 if idx then
+                    ngx.log(ngx.NOTICE, string.format("[%s judge] action:%s, uri:%s, method:%s, mark:%s", meta._NAME, v["action"], uri, method, v["mark"]))
                     if v["action"] == constants.ACTION.reject then
                         ngx.say(v["response"])
                         ngx.exit(ngx.HTTP_OK)
-                    else if v["action"] == constants.ACTION.defer then
+                    elseif v["action"] == constants.ACTION.defer then
                         ngx.sleep(0.1)
                     else
                        ngx.log(ngx.ERR, string.format("illegal action:", v["action"]))
                     end
-                    ngx.log(ngx.NOTICE, string.format("[%s judge] action:%s, uri:%s, method:%s, mark:%s", meta._NAME, v["action"], uri, method, v["mark"]))
                 end
             end
         end
