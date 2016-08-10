@@ -22,7 +22,7 @@ function _M.cors()
 end
 
 function _M.default() 
-    ngx.say("httptables version: ", meta._VERSION)
+    ngx.say(string.format("%s version: %s", meta._NAME, meta._VERSION))
 end
 
 function _M.roles()
