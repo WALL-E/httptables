@@ -26,4 +26,16 @@ cd openresty-1.9.15.1/
 
 
 ## 安装httptables
-下载后，直接运行startup.sh即可
+下载后，直接运行install.sh即可
+
+# Copyright
+感谢以下项开源目
+
+* OpenResty
+
+  [OpenResty](https://openresty.org/en/) ™ 是一个基于 Nginx 与 Lua 的高性能 Web 平台。
+
+* Kong
+
+  [Kong](http://www.getkong.org/) 是在客户端和（微）服务间转发API通信的API网关，通过插件扩展功能。
+
