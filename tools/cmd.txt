@@ -1,0 +1,18 @@
+更新role_types
+curl -X PUT --header 'Content-Type: application/x-www-form-urlencoded' --header 'Accept: application/json' -d 'type=user&mark=mmm&uri=uuu&method=M&createTime=111&expired=222&action=A&response=R' 'http://172.28.32.105:9000/apis/roles/17'
+
+
+创建roles
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{
+  "name":"origin",
+  "priority":3,
+  "lamda":"return ngx.var.remote_addr",
+  "enable":1
+}' 'http://127.0.0.1:9000/apis/role_types'
+
+更新roles
+curl -X PUT --header 'Content-Type: application/x-www-form-urlencoded' --header 'Accept: application/json' -d 'type=user&mark=mmm&uri=uuu&method=M&createTime=111&expired=222&action=A&response=R' 'http://172.28.32.105:9000/apis/roles/17'
+
+删除roles
+curl -X DELETE --header 'Accept: application/json' 'http://172.28.32.105:9000/apis/role_types/32'
+
