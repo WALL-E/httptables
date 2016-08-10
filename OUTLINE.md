@@ -111,7 +111,7 @@
 | method    | 字符串(64)    | 请求方法，多个值以逗号分隔    |
 | createtime    | 整型    |  规则创建时间   |
 | expired    | 整型    |  规则失效时间(unix timestamp)   |
-| action    | 字符串(64)    |   目前仅支持reject、delay(毫秒)  |
+| action    | 字符串(64)    |   目前仅支持reject、defer(毫秒, 默认是100毫秒)  |
 | response    | json字符串(1024)    |   响应体内容，需要符合resthub规范(可选)  |
 
 
