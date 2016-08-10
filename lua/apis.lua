@@ -22,7 +22,7 @@ function _M.cors()
 end
 
 function _M.default() 
-    ngx.say("Restful admin apis")
+    ngx.say("httptables version: ", meta._VERSION)
 end
 
 function _M.roles()
