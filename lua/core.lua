@@ -1,5 +1,6 @@
 
 local ngx = require "ngx"
+local meta = require "meta"
 local cjson = require "cjson.safe"
 local utils = require "utils"
 local policy = require "policy"
@@ -51,7 +52,7 @@ for _,v  in pairs(shared_roles) do
                 -- 检查mark
                 idx,_ = ngx.re.find(v["mark"], mark_funcions[v["type"]]())
                 if idx then
-                    ngx.log(ngx.NOTICE, string.format("action:%s, uri:%s, method:%s, mark:%s", v["action"], uri, method, v["mark"]))
+                    ngx.log(ngx.NOTICE, string.format("[%s judge] action:%s, uri:%s, method:%s, mark:%s", meta._NAME, v["action"], uri, method, v["mark"]))
                     ngx.say(v["response"])
                     ngx.exit(ngx.HTTP_OK)
                 end
