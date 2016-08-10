@@ -132,15 +132,3 @@
   * get http://host:8001/admin/role_types
 * 查看规则事件统计
   * get http://host:8001/admin/roles
-
-
-# 九. Copyright
-感谢以下项开源目
-
-* OpenResty
-
-  [OpenResty](https://openresty.org/en/) ™ 是一个基于 Nginx 与 Lua 的高性能 Web 平台。
-
-* Kong
-
-  [Kong](http://www.getkong.org/) 是在客户端和（微）服务间转发API通信的API网关，通过插件扩展功能。
