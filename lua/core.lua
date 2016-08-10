@@ -4,6 +4,7 @@ local meta = require "meta"
 local cjson = require "cjson.safe"
 local utils = require "utils"
 local policy = require "policy"
+local constants = require "constants"
 
 policy.try_reload_policy()
 
@@ -52,9 +53,15 @@ for _,v  in pairs(shared_roles) do
                 -- 检查mark
                 idx,_ = ngx.re.find(v["mark"], mark_funcions[v["type"]]())
                 if idx then
+                    if v["action"] == constants.ACTION.reject then
+                        ngx.say(v["response"])
+                        ngx.exit(ngx.HTTP_OK)
+                    else if v["action"] == constants.ACTION.defer then
+                        ngx.sleep(0.1)
+                    else
+                       ngx.log(ngx.ERR, string.format("illegal action:", v["action"]))
+                    end
                     ngx.log(ngx.NOTICE, string.format("[%s judge] action:%s, uri:%s, method:%s, mark:%s", meta._NAME, v["action"], uri, method, v["mark"]))
-                    ngx.say(v["response"])
-                    ngx.exit(ngx.HTTP_OK)
                 end
             end
         end
