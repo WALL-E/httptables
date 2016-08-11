@@ -33,7 +33,8 @@ roles = [
         "type":"origin",
         "expired":1480626687,
         "createtime":1470304637,
-        "mark":"127.0.0.1"
+        "mark":"127.0.0.1",
+        "duration": 0
     },
     {
     	"response":'{"status":4003, "message":"illegal device"}',
@@ -43,7 +44,8 @@ roles = [
     	"type":"device",
     	"expired":1480626687,
     	"createtime":1470304637,
-    	"mark":"device_1"
+    	"mark":"device_1",
+        "duration": 0
     },
     {
     	"response":'{"status":4002, "message":"illegal user"}',
@@ -53,7 +55,8 @@ roles = [
     	"type":"user",
     	"expired":1480626687,
     	"createtime":1470304637,
-    	"mark":"user_1"
+    	"mark":"user_1",
+        "duration": 0
     },
     {
     	"response":'{"status":4003, "message":"defer 100ms"}',
@@ -63,7 +66,8 @@ roles = [
     	"type":"user",
     	"expired":1480626687,
     	"createtime":1470304637,
-    	"mark":"user_1"
+    	"mark":"user_1",
+        "duration": 0
     }
 ]
 
