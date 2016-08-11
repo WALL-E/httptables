@@ -7,6 +7,7 @@ local cjson = require "cjson"
 local redis_api = require "redis_api"
 local config = require "config"
 local utils = require "utils"
+local http = require "http"
 
 shared_role_types = {}
 shared_roles = {}
@@ -75,6 +76,42 @@ function _M.load_policy_from_redis()
     local data = ngx.shared.data
     shared_role_types = cjson.decode(role_types)
     shared_roles = cjson.decode(roles)
+    return true
+end
+
+-- load config to lua_shared_dict from Redis
+function _M.load_policy_from_http2()
+    ngx.log(ngx.INFO, "[policy] load_policy_from_http2")
+    local data = ngx.shared.data
+    local httpc = http.new()
+    local role_types, roles
+
+    local res, err = httpc:request_uri(config.http_endpoint.role_types, {})
+    if not res then
+        ngx.log(ngx.ERR, "[load_policy_from_http2] request_uri role_types failed")
+        return false
+    end
+    if res.status == ngx.HTTP_OK then
+        roles = cjson.decode(res.body)
+    else
+        ngx.log(ngx.ERR, "[load_policy_from_http] role_types:", res.status, ", reason:", res.reason)
+        return false
+    end
+    shared_role_types = utils.deep_copy(role_types.result)
+
+    res, err = httpc:request_uri(config.http_endpoint.roles, {})
+    if not res then
+        ngx.log(ngx.ERR, "[load_policy_from_http2] request_uri roles failed")
+        return false
+    end
+    if res.status == ngx.HTTP_OK then
+        roles = cjson.decode(res.body)
+    else
+        ngx.log(ngx.ERR, "[load_policy_from_http] roles:", res.status, ", reason:", res.reason)
+        return false
+    end
+    shared_roles = utils.deep_copy(roles.result)
+
     return true
 end
 
