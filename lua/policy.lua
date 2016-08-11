@@ -18,7 +18,7 @@ function _M.try_reload_policy()
     local center_version_counter = _M.get_center_version_counter()
     if _M.get_shared_version_counter() < center_version_counter and not shared_sync_pending then
         shared_sync_pending = true
-        local ret = _M.load_policy_from_http()
+        local ret = _M.load_policy_from_http2()
         if ret then
             _M.set_shared_version_counter(center_version_counter)
             ngx.log(ngx.INFO, "[try_reload_policy] shared_version_counte: ", _M.get_shared_version_counter(), 
@@ -92,7 +92,7 @@ function _M.load_policy_from_http2()
         return false
     end
     if res.status == ngx.HTTP_OK then
-        roles = cjson.decode(res.body)
+        role_types = cjson.decode(res.body)
     else
         ngx.log(ngx.ERR, "[load_policy_from_http] role_types:", res.status, ", reason:", res.reason)
         return false
