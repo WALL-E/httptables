@@ -15,8 +15,6 @@ function getIPAdress(){
 
 frisby.create('origin')
   .get('http://127.0.0.1:8000/test/origin')
-  .addHeader('X-Device-ID', 'device_1')
-  .addHeader('X-User-ID', 'user_1')
   .expectStatus(200)
   .expectJSON({
         status: 4001,
@@ -26,8 +24,6 @@ frisby.create('origin')
 
 frisby.create('origin')
   .get('http://' + getIPAdress() + ':8000/test/origin')
-  .addHeader('X-Device-ID', 'device_1')
-  .addHeader('X-User-ID', 'user_1')
   .expectStatus(200)
   .expectJSON({
         status: 200,
@@ -37,8 +33,6 @@ frisby.create('origin')
 
 frisby.create('origin')
   .post('http://127.0.0.1:8000/test/origin')
-  .addHeader('X-Device-ID', 'device_1')
-  .addHeader('X-User-ID', 'user_1')
   .expectStatus(200)
   .expectJSON({
         status: 4001,
@@ -47,8 +41,6 @@ frisby.create('origin')
 
 frisby.create('origin')
   .put('http://127.0.0.1:8000/test/origin')
-  .addHeader('X-Device-ID', 'device_1')
-  .addHeader('X-User-ID', 'user_1')
   .expectStatus(200)
   .expectJSON({
         status: 200,

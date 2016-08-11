@@ -4,7 +4,7 @@ frisby.create('origin')
   .get('http://127.0.0.1:8000/test/origin')
   .expectStatus(200)
   .expectJSON({
-        status: 200,
+        status: 4001,
   })
 .toss();
 
