@@ -44,7 +44,11 @@ for _,v  in pairs(shared_roles) do
             if uri == v["uri"] then
                 -- 检查mark
                 ngx.log(ngx.INFO, string.format("check mark: %s", v["type"]))
-                local mark = mark_funcions[v["type"]]()
+                local ret, mark = pcall(mark_funcions[v["type"]])
+                if not ret then
+                    ngx.log(ngx.ERR, string.format("pcall: %s", mark))
+                    mark = nil
+                end
                 ngx.log(ngx.INFO, string.format("[%s behaviour] action:%s, uri:%s, method:%s, mark:%s", meta._NAME, v["action"], uri, method, v["mark"]))
                 if not mark or mark == "" or type(mark) ~= "string" then
                     idx = false

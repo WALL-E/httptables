@@ -1,9 +1,10 @@
 TODO
 
-1. 运行lamda的loadstring函数，需要不做异常
+
+1. 数据库表role需要增加字段，duration，代表延迟执行的时间
 
 2. 优化规则查找方式
 首先需按优先级来分别查找不同类型的规则，其次，每种规则使用mark当做key来hash存储
 
-3. 数据库表role需要增加字段，duration，代表延迟执行的时间
+3. 缓存loadstring的结果
 
