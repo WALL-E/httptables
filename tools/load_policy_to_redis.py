@@ -59,7 +59,7 @@ roles = [
         "duration": 0
     },
     {
-    	"response":'{"status":4003, "message":"defer 100ms"}',
+    	"response":'{"status":4003, "message":"defer 200ms"}',
     	"method":"get",
     	"uri":"/test/defer",
     	"action":"defer",
@@ -67,7 +67,7 @@ roles = [
     	"expired":1480626687,
     	"createtime":1470304637,
     	"mark":"user_1",
-        "duration": 0
+        "duration": 200
     }
 ]
 
