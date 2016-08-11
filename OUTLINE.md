@@ -113,6 +113,7 @@
 | expired    | 整型    |  规则失效时间(unix timestamp)   |
 | action    | 字符串(64)    |   目前仅支持reject、defer(毫秒, 默认是100毫秒)  |
 | response    | json字符串(1024)    |   响应体内容，需要符合resthub规范(可选)  |
+| duration    | 整型    |   延迟请求的时间长度(可选)  |
 
 
 # 八. 规则引擎设计
