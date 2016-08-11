@@ -61,7 +61,7 @@ for _,v  in pairs(shared_roles) do
                         ngx.say(v["response"])
                         ngx.exit(ngx.HTTP_OK)
                     elseif v["action"] == constants.ACTION.defer then
-                        ngx.sleep(0.1)
+                        ngx.sleep(v["duration"]/1000)
                     else
                        ngx.log(ngx.ERR, string.format("illegal action:", v["action"]))
                     end
