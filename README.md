@@ -8,8 +8,8 @@ httptables是一个基于OpenResty，面向web应用的轻量级（Lightweight�
 httptables的世界里，每个客户端有三种独立身份，并且每种身份都是唯一标识
 
 * `Origin` 来源IP地址
-* `Device` 设备ID
 * `User`   用户ID
+* `Device` 设备ID
 
 ##  功能列表
 本软件支持以下功能点
