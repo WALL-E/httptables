@@ -15,7 +15,7 @@ httptables的世界里每个客户端有三种独立身份，并且每种身份�
 * `User`   用户ID
 
 ## 安装
-安装请查看[INSTALL.md](doc/OUTLINE.md)。
+安装请查看[INSTALL.md](doc/INSTALL.md)。
 
 # Copyleft
 感谢以下项开源目
