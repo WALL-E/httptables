@@ -1,21 +1,20 @@
 # httptables (just like Linux's iptables)
-httptables是一个基于OpenResty，面向web应用的轻量级（Lightweight）软防火墙，可以配合风控系统针对HTTP请求做不同的处理，目前支持两种响应方式
+httptables是一个基于OpenResty，面向web应用的轻量级（Lightweight）软防火墙，可以配合第三方系统（用户行为系统）针对符合特定条件的HTTP请求做不同的处理，目前支持两种响应方式
 
 * Reject
 * Defer
 
-
-设计细节请查看[OUTLINE.md](doc/OUTLINE.md)。
+设计细节请移步[OUTLINE.md](doc/OUTLINE.md)。
 
 ## 世界观
-httptables的世界里每个客户端有三种独立身份，并且每种身份都是唯一标识
+httptables的世界里，每个客户端有三种独立身份，并且每种身份都是唯一标识
 
 * `Origin` 来源IP地址
 * `Device` 设备ID
 * `User`   用户ID
 
 ## 安装
-安装请查看[INSTALL.md](doc/INSTALL.md)。
+安装请移步[INSTALL.md](doc/INSTALL.md)。
 
 # Copyleft
 感谢以下项开源目
