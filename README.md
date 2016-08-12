@@ -14,7 +14,7 @@ httptables的世界里，每个客户端有三种独立身份，并且每种身�
 ##  功能列表
 本软件支持以下功能点
 
-* 熔断机制(circuit breakers)
+* 熔断(circuit breakers)
   * **Reject** 阻断用户访问，返回自定义内容响应体
 * 减速带(speed bump)
   * **Defer** 放慢用户的请求速度
