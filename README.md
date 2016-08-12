@@ -1,5 +1,5 @@
 # httptables (just like Linux's iptables)
-httptables是一个基于OpenResty的软防火墙，可以配合风控系统针对HTTP请求做不同的处理，目前计划支持两种响应方式
+httptables是一个基于OpenResty，面向web应用的轻量级（Lightweight）软防火墙，可以配合风控系统针对HTTP请求做不同的处理，目前支持两种响应方式
 
 * Reject
 * Defer
