@@ -2,31 +2,20 @@
 httptables是一个基于OpenResty的软防火墙，可以配合风控系统针对HTTP请求做不同的处理，目前计划支持两种响应方式
 
 * Reject
-* Delay
+* Defer
 
 
-设计细节请查看[OUTLINE.md](OUTLINE.md)。
+设计细节请查看[OUTLINE.md](doc/OUTLINE.md)。
 
-## 安装依赖软件
-目前仅对Centos做安装说明
+## 世界观
+httptables的世界里每个客户端有三种独立身份，并且每种身份都是唯一标识
 
-```
-sh depends.sh
-```
+* `Origin` 来源IP地址
+* `Device` 设备ID
+* `User`   用户ID
 
-## 安装openresty
-源码包编译安装
-
-```
-wget https://openresty.org/download/openresty-1.9.15.1.tar.gz
-tar zxvf openresty-1.9.15.1.tar.gz
-cd openresty-1.9.15.1/
-./configure --prefix=/apps/openresty --with-http_realip_module && gmake && gmake install
-```
-
-
-## 安装httptables
-下载后，直接运行install.sh即可
+## 安装
+安装请查看[INSTALL.md](doc/OUTLINE.md)。
 
 # Copyleft
 感谢以下项开源目
