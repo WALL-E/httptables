@@ -4,7 +4,7 @@ httptables是一个基于OpenResty，面向web应用的轻量级（Lightweight�
 * Reject
 * Defer
 
-设计细节请移步[OUTLINE.md](doc/OUTLINE.md)。
+设计细节请点击[OUTLINE.md](doc/OUTLINE.md)。
 
 ## 世界观
 httptables的世界里，每个客户端有三种独立身份，并且每种身份都是唯一标识
@@ -14,7 +14,7 @@ httptables的世界里，每个客户端有三种独立身份，并且每种身�
 * `User`   用户ID
 
 ## 安装
-安装请移步[INSTALL.md](doc/INSTALL.md)。
+安装请点击[INSTALL.md](doc/INSTALL.md)。
 
 # Copyleft
 感谢以下项开源目
