@@ -2,7 +2,7 @@
 httptables是一个基于OpenResty，面向web应用的轻量级（Lightweight）软防火墙，可以配合第三方系统（用户行为分析系统）针对符合特定条件的HTTP请求做不同的处理。
 
 
-设计细节请点击[OUTLINE.md](doc/OUTLINE.md)。
+设计细节请点击[OUTLINE.md](OUTLINE.md)。
 
 ## 世界观
 httptables的世界里，每个客户端有三种独立身份，并且每种身份都是唯一标识
