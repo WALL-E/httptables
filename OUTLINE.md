@@ -3,7 +3,7 @@ Outline
 
 Version: v0.6
 
-date: 2016-08-13
+Date: 2016-08-13
 
 
 # 一. 前置条件
