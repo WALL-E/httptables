@@ -25,6 +25,11 @@ for _,role_type in pairs(sorted_role_types) do
         mark = nil
     end
 
+    if role_type.enable == 0 then
+        mark = nil
+        ngx.log(ngx.INFO, string.format("%s is disable", role_type.name))
+    end
+
     local role = mark and role_type.hash and role_type.hash[mark]
     if role then
         -- 检查规则有效期
