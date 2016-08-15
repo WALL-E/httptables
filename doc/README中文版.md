@@ -4,6 +4,15 @@ httptables是一个基于OpenResty，面向web应用的轻量级（Lightweight�
 
 设计细节请点击[OUTLINE.md](OUTLINE中文版.md)。
 
+
+## 部署架构图
+
+* 绿色: 已实现
+* 黄色: 未实现
+
+![image](httptables-infrastructure.png)
+
+
 ## 世界观
 httptables的世界里，每个客户端有三种独立身份，并且每种身份都是唯一标识
 
