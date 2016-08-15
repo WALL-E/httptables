@@ -25,7 +25,7 @@ for _,role_type in pairs(sorted_role_types) do
         mark = nil
     end
 
-    local role = mark and role_type.hash[mark]
+    local role = mark and role_type.hash and role_type.hash[mark]
     if role then
         -- 检查规则有效期
         ngx.log(ngx.INFO, "check expired")

@@ -36,13 +36,16 @@ function _M.try_reload_policy()
             end
             table.sort(sorted_role_types, comps)
             for _,role in pairs(shared_roles) do
-                local role_type_name = role["type"]
-                for _,role_type in pairs(sorted_role_types) do
-                    if role_type_name == role_type.name then
-                        if not role_type.hash then
-                            role_type.hash = {}
+                local timestamp = ngx.now()
+                if role.expired > timestamp then
+                    local role_type_name = role["type"]
+                    for _,role_type in pairs(sorted_role_types) do
+                        if role_type_name == role_type.name then
+                            if not role_type.hash then
+                                role_type.hash = {}
+                            end
+                            role_type.hash[role.mark] = role
                         end
-                        role_type.hash[role.mark] = role
                     end
                 end
             end
