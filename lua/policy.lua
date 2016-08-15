@@ -14,6 +14,7 @@ shared_roles = {}
 shared_version_counter = 0
 shared_sync_pending = false
 shared_mark_funcions = {}
+sorted_role_types = {}
 
 function _M.try_reload_policy()
     local center_version_counter = _M.get_center_version_counter()
@@ -24,13 +25,34 @@ function _M.try_reload_policy()
             _M.set_shared_version_counter(center_version_counter)
             ngx.log(ngx.INFO, "[try_reload_policy] shared_version_counte: ", _M.get_shared_version_counter(), 
                               ", center_version_counter:", _M.get_center_version_counter())
-            --reload lamda
-            for _,v in pairs(shared_role_types) do
-                shared_mark_funcions[v.name] = loadstring(v.lamda)
+            --cache lamda
+            for _,role_type in pairs(shared_role_types) do
+                shared_mark_funcions[role_type.name] = loadstring(role_type.lamda)
+            end
+            --reorganize role_type and role
+            sorted_role_types = utils.deep_copy(shared_role_types)
+            local comps = function (a, b)
+                return a.priority < b.priority
+            end
+            table.sort(sorted_role_types, comps)
+            for _,role in pairs(shared_roles) do
+                local role_type_name = role["type"]
+                for _,role_type in pairs(sorted_role_types) do
+                    if role_type_name == role_type.name then
+                        if not role_type.hash then
+                            role_type.hash = {}
+                        end
+                        role_type.hash[role.mark] = role
+                    end
+                end
             end
         end
         shared_sync_pending = false
     end
+end
+
+function _M.get_sorted_role_types()
+    return sorted_role_types
 end
 
 function _M.get_shared_mark_functions()
