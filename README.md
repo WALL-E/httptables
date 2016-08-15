@@ -1,35 +1,37 @@
 # httptables (just like Linux's iptables)
-httptables是一个基于OpenResty，面向web应用的轻量级（Lightweight）软防火墙，可以配合第三方系统（用户行为分析系统）针对符合特定条件的HTTP请求做不同的处理。
+httptables is a based on the [OpenResty](https://openresty.org/en/), lightweight soft firewall for web application, can cooperate with the third party system(User behavior analysis system), to respond to a malicious request.
 
 
-设计细节请点击[OUTLINE.md](doc/OUTLINE.md)。
+Design details please click [OUTLINE.md](OUTLINE.md)。
 
-## 世界观
-httptables的世界里，每个客户端有三种独立身份，并且每种身份都是唯一标识
+## World views 
+In her world, each client has three separate identity, and each is unique
 
-* `Origin` 来源IP地址
-* `User`   用户ID
-* `Device` 设备ID
+* `Origin` The source address of client
+* `User`   The User ID
+* `Device` The Device ID
 
-##  功能列表
-本软件支持以下功能点
+## Features
+Support the following features
 
-* 熔断(circuit breakers)
-  * **Reject** 阻断用户访问，返回自定义内容响应体
-* 减速带(speed bump)
-  * **Defer** 放慢用户的请求速度
+* circuit breakers
+  * **Reject** Blocking the user requests, return the response of custom content
+* speed bump
+  * **Defer** SLowing down of the request of the user
 
-## 安装
-安装请点击[INSTALL.md](doc/INSTALL.md)。
+## Install
+Please click [INSTALL.md](doc/INSTALL.md) to view the installation documentation
+
 
 # Copyleft
-感谢以下项开源目
+Thank you for the following open source projects
+
 
 * OpenResty
 
-  [OpenResty](https://openresty.org/en/) ™ 是一个基于 Nginx 与 Lua 的高性能 Web 平台。
+  <span id="OpenResty">[OpenResty](https://openresty.org/en/)™</span> is a full-fledged web platform by integrating the standard Nginx core, LuaJIT, many carefully written Lua libraries, lots of high quality 3rd-party Nginx modules, and most of their external dependencies. It is designed to help developers easily build scalable web applications, web services, and dynamic web gateways.
 
 * Kong
 
-  [Kong](http://www.getkong.org/) 是在客户端和（微）服务间转发API通信的API网关，通过插件扩展功能。
+  [Kong](http://www.getkong.org/) is a scalable, open source API Layer (also known as an API Gateway, or API Middleware). Kong runs in front of any RESTful API and is extended through Plugins, which provide extra functionalities and services beyond the core platform.
 
