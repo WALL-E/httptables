@@ -4,6 +4,13 @@ httptables is a based on the [OpenResty](https://openresty.org/en/), lightweight
 
 Design details please click [OUTLINE.md](OUTLINE.md)。
 
+## Deployment diagram
+
+* green: implemented
+* yellow: not implemented
+
+![image](doc/httptables-infrastructure.png)
+
 ## World views 
 In her world, each client has three separate identity, and each is unique
 
