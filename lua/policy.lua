@@ -131,7 +131,7 @@ function _M.load_policy_from_http()
         ngx.log(ngx.ERR, "[load_policy_from_http] role_types:", res.status, ", reason:", res.reason)
         return false
     end
-    shared_role_types = utils.deep_copy(role_types.result) or {}
+    shared_role_types = utils.deep_copy(role_types.result or role_types) or {}
 
     res, err = httpc:request_uri(config.http_endpoint.roles, {})
     if not res then
@@ -144,7 +144,7 @@ function _M.load_policy_from_http()
         ngx.log(ngx.ERR, "[load_policy_from_http] roles:", res.status, ", reason:", res.reason)
         return false
     end
-    shared_roles = utils.deep_copy(roles.result) or {}
+    shared_roles = utils.deep_copy(roles.result or roles) or {}
 
     return true
 end
