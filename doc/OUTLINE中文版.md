@@ -78,6 +78,70 @@
 | lamda    | 字符串(1024)    |   有效的lua语句，定义怎样获取数据，目前不支持修改(可选)  |
 | enable    | 整型    |   是否启用此类规则，0表示停用，1表示启用  |
 
+返回数据格式
+
+```
+[
+    {
+        "url": "http://172.28.32.105:8080/apis/role_types/2/",
+        "name": "device",
+        "priority": 1,
+        "lamda": "return ngx.req.get_headers()['X-Device-ID']",
+        "enable": 1
+    },
+    {
+        "url": "http://172.28.32.105:8080/apis/role_types/3/",
+        "name": "user",
+        "priority": 1,
+        "lamda": "return ngx.req.get_headers()['X-User-ID']",
+        "enable": 1
+    },
+    {
+        "url": "http://172.28.32.105:8080/apis/role_types/5/",
+        "name": "origin",
+        "priority": 3,
+        "lamda": "return ngx.var.remote_addr",
+        "enable": 1
+    }
+]
+
+或者是
+
+{
+    "message": "ok",
+    "result": [
+        {
+            "id": 2,
+            "name": "device",
+            "priority": 1,
+            "lamda": "return ngx.req.get_headers()['X-Device-ID']",
+            "enable": 1
+        },
+        {
+            "id": 3,
+            "name": "user",
+            "priority": 1,
+            "lamda": "return ngx.req.get_headers()['X-User-ID']",
+            "enable": 1
+        },
+        {
+            "id": 5,
+            "name": "origin",
+            "priority": 3,
+            "lamda": "return ngx.var.remote_addr",
+            "enable": 1
+        },
+        {
+            "id": 12,
+            "name": "user1",
+            "priority": 1,
+            "lamda": "return ngx.req.get_headers()['XX-User-ID']",
+            "enable": 1
+        }
+    ],
+    "status": 200
+}
+```
 
 ## 规则
 规则详细内容
@@ -99,6 +163,93 @@
 | response    | json字符串(1024)    |   响应体内容，需要符合resthub规范(可选)  |
 | duration    | 整型    |   延迟请求的时间长度, 单位是毫秒, 默认是0 (可选)  |
 
+返回数据格式
+
+```
+[
+    {
+        "url": "http://172.28.32.105:8080/apis/roles/3/",
+        "type": "device",
+        "mark": "device_1",
+        "uri": "/test/device",
+        "method": "post",
+        "createtime": 1470304637,
+        "expired": 1475246619,
+        "action": "reject",
+        "response": "{\"status\":4003, \"message\":\"illegal device\"}",
+        "duration": 0
+    },
+    {
+        "url": "http://172.28.32.105:8080/apis/roles/4/",
+        "type": "user",
+        "mark": "user_1",
+        "uri": "/test/user",
+        "method": "get",
+        "createtime": 1470304637,
+        "expired": 1475246619,
+        "action": "reject",
+        "response": "{\"status\":4002, \"message\":\"illegal user\"}",
+        "duration": 0
+    },
+    {
+        "url": "http://172.28.32.105:8080/apis/roles/18/",
+        "type": "origin",
+        "mark": "127.0.0.1",
+        "uri": "/test/origin",
+        "method": "get,post",
+        "createtime": 1470304637,
+        "expired": 1475246619,
+        "action": "reject",
+        "response": "{\"status\":4001, \"message\":\"illegal origin\"}",
+        "duration": 0
+    }
+]
+
+或者是
+
+{
+    "message": "ok",
+    "result": [
+        {
+            "id": 3,
+            "type": "device",
+            "mark": "device_1",
+            "uri": "/test/device",
+            "method": "post",
+            "createTime": 1470304637,
+            "expired": 1475246619,
+            "action": "reject",
+            "response": "{\"status\":4003, \"message\":\"illegal device\"}",
+            "duration": 0
+        },
+        {
+            "id": 4,
+            "type": "user",
+            "mark": "user_1",
+            "uri": "/test/user",
+            "method": "get",
+            "createTime": 1470304637,
+            "expired": 1475246619,
+            "action": "reject",
+            "response": "{\"status\":4002, \"message\":\"illegal user\"}",
+            "duration": 0
+        },
+        {
+            "id": 8,
+            "type": "origin",
+            "mark": "106.38.84.66",
+            "uri": "repayment",
+            "method": "put,post",
+            "createTime": 1470734880,
+            "expired": 1475246619,
+            "action": "reject",
+            "response": "{\"code\":0,\"result\":{},\"msg\":\"对不起，您的IP发生还款请求异常\",\"success\":false}",
+            "duration": 0
+        }
+    ],
+    "status": 200
+}
+```
 
 # 七. 规则引擎设计
 规则引擎使用Nginx+Lua实现
