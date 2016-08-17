@@ -64,6 +64,8 @@
 
 * x-www-form-urlencoded
 
+** 规则类型或规则更新后，需要调用http://httptables_host:8001:/admin/notify, 通知httptables同步更新数据，如果是多台httptables，需要依次通知**
+
 ## 规则类型
 目前内置三种规则类型
 
