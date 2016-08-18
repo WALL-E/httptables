@@ -29,6 +29,13 @@ Support the following features
 ## Install
 Please click [INSTALL.md](doc/INSTALL.md) to view the installation documentation
 
+## Integration with httptables-manager
+copy lua/config\_community.lua to lua/config.py and modify the contents of the following
+
+```
+_M.http_endpoint.role_types = "http://httptables-manager-host:8080/apis/role_types/"
+_M.http_endpoint.roles = "http://httptables-manager-host:8080/apis/roles/"
+```
 
 # Copyleft
 Thank you for the following open source projects
