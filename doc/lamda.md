@@ -1,11 +1,15 @@
 # lamda function
 
+## Default
+
 By default, device and user, keep in the header, like the following
 
 ```
 X-Device-ID: FB360513-78C1-4F27-BDC2-09848A20C474
 X-User-ID: 10341243
 ```
+
+## Customized
 
 in the httptables-manager，a field of table `role_types`, the name is lamda, keep in the getattr function
 
@@ -17,6 +21,7 @@ in the httptables-manager，a field of table `role_types`, the name is lamda, ke
 
 lamda is a lua expression, tells httptables how to get data, you can modify it according to your needs.
 
+## Dev&Debug
 
 httptables integrated a debugging tool, to test lamda string
 
