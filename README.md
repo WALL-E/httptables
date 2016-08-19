@@ -6,7 +6,7 @@ Design details please click [OUTLINE.md](doc/OUTLINE中文版.md)。
 
 ## Deployment diagram
 
-* [Httptables-manager](https://github.com/WALL-E/httptables-manager): implemented
+* [Httptables-Manager](https://github.com/WALL-E/httptables-manager): implemented
 * User-Behavior-Analysis: not implemented
 
 ![image](doc/httptables-infrastructure.png)
