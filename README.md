@@ -6,8 +6,8 @@ Design details please click [OUTLINE.md](doc/OUTLINE中文版.md)。
 
 ## Deployment diagram
 
-* green: implemented [httptables-manager](https://github.com/WALL-E/httptables-manager)
-* yellow: not implemented
+* [Httptables-manager](https://github.com/WALL-E/httptables-manager): implemented
+* User-Behavior-Analysis: not implemented
 
 ![image](doc/httptables-infrastructure.png)
 
