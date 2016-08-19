@@ -19,7 +19,7 @@ In her world, each client has three separate identity, and each is unique
 * `User`   The User ID
 * `Device` The Device ID
 
-The User and Device, retrieve from request's header, you can customize the **getattr** function, [see more](doc/lamada.md)
+The User and Device, retrieve from request's header, you can customize the **getattr** function, [see more](doc/lamda.md)
 
 ## Features
 Support the following features
