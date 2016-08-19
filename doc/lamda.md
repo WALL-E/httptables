@@ -4,7 +4,7 @@ By default, device and user, keep in the header, like the following
 
 ```
 X-Device-ID: FB360513-78C1-4F27-BDC2-09848A20C474
-X-User-ID:10341243
+X-User-ID: 10341243
 ```
 
 in the httptables-manager，a field of table `role_types`, the name is lamda, keep in the getattr function
@@ -12,7 +12,7 @@ in the httptables-manager，a field of table `role_types`, the name is lamda, ke
 * User
   * "return ngx.req.get_headers()['X-User-ID']"
 * Device
-  * "return ngx.req.get_headers()['X-Device-ID']",
+  * "return ngx.req.get_headers()['X-Device-ID']"
 
 
 lamda is a lua expression, tells httptables how to get data, you can modify it according to your needs.
