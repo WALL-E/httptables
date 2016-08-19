@@ -20,10 +20,10 @@ lamda is a lua expression, tells httptables how to get data, you can modify it a
 
 httptables integrated a debugging tool, to test lamda string
 
-
 ```
-curl -d "lamda=ngx.req.get_headers()['X-Test-ID']" -H "X-Test-ID: hello,httptables" "http://127.0.0.1:8001/admin/lamda"
-
+[vagrant@vagrant-172-28-32-105 ~]$ curl -d "lamda=return ngx.req.get_headers()['X-Test-ID']" -H "X-Test-ID: hello,httptables" "http://127.0.0.1:8001/admin/lamda"
 hello,httptables
 ```
+
+If you have more needs, please create a new issues.
 
