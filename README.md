@@ -1,4 +1,6 @@
 # httptables (just like Linux's iptables)
+Kind of a firewall for http requests based on headers. It parses a set of rules for each HTTP header and apply the matching policy
+
 httptables is a based on the [OpenResty](https://openresty.org/en/), lightweight soft firewall for web application, can cooperate with the third party system(User behavior analysis system), to respond to a malicious request.
 
 
