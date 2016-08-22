@@ -78,7 +78,9 @@
 | name    | 字符串(64)    | 目前仅支持三种origin、device、user    |
 | priority    | 整型    |  规则优先级相同时，执行顺序不确定   |
 | lamda    | 字符串(1024)    |   有效的lua语句，定义怎样获取数据，目前不支持修改(可选)  |
-| enable    | 整型    |   是否启用此类规则，0表示停用，1表示启用  |
+| enable    | 整型    |   此类规则是否启用，0表示停用，1表示启用  |
+| optional  | 整型    |   此类规则是否可选，0表示不可选，1表示可选  |
+
 
 返回数据格式
 
@@ -89,21 +91,24 @@
         "name": "device",
         "priority": 1,
         "lamda": "return ngx.req.get_headers()['X-Device-ID']",
-        "enable": 1
+        "enable": 1,
+        "optional":0
     },
     {
         "url": "http://172.28.32.105:8080/apis/role_types/3/",
         "name": "user",
         "priority": 1,
         "lamda": "return ngx.req.get_headers()['X-User-ID']",
-        "enable": 1
+        "enable": 1,
+        "optional":0
     },
     {
         "url": "http://172.28.32.105:8080/apis/role_types/5/",
         "name": "origin",
         "priority": 3,
         "lamda": "return ngx.var.remote_addr",
-        "enable": 1
+        "enable": 1,
+        "optional":0
     }
 ]
 
