@@ -1,13 +1,14 @@
 # httptables (just like Linux's iptables)
-httptables is a based on the [OpenResty](https://openresty.org/en/), lightweight soft firewall for web application, can cooperate with the third party system(User behavior analysis system), to respond to a malicious request.
+httptables is a based on the [OpenResty](https://openresty.org/en/), kind of a firewall for http requests based on headers. It parses a set of rules for each HTTP header and apply the matching policy. Policy using Restful interface management, easy enough to integration with the third party system(User behavior analysis system).
 
 
-Design details please click [OUTLINE.md](OUTLINE.md)。
+Design details please click [OUTLINE.md](doc/OUTLINE中文版.md)。
 
 ## Deployment diagram
 
-* green: implemented
-* yellow: not implemented
+* [Httptables](https://github.com/WALL-E/httptables): implemented
+* [Httptables-Manager](https://github.com/WALL-E/httptables-manager): implemented
+* User-Behavior-Analysis: not implemented
 
 ![image](doc/httptables-infrastructure.png)
 
@@ -17,6 +18,8 @@ In her world, each client has three separate identity, and each is unique
 * `Origin` The source address of client
 * `User`   The User ID
 * `Device` The Device ID
+
+The User and Device, retrieve from request's header, you can customize the **getattr** function, [see more](doc/lamda.md)
 
 ## Features
 Support the following features
@@ -29,6 +32,13 @@ Support the following features
 ## Install
 Please click [INSTALL.md](doc/INSTALL.md) to view the installation documentation
 
+## Integration with httptables-manager
+open lua/config.py and modify the contents of the `httptables-manager-ip`
+
+```
+_M.http_endpoint.role_types = "http://httptables-manager-ip:8080/apis/role_types/"
+_M.http_endpoint.roles = "http://httptables-manager-ip:8080/apis/roles/"
+```
 
 # Copyleft
 Thank you for the following open source projects
