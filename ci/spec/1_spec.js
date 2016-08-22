@@ -1,7 +1,31 @@
 var frisby = require('frisby');
 
-frisby.create('默认策略是通过')
+frisby.create('case-1-1')
   .get('http://127.0.0.1:8000/')
+  .expectStatus(200)
+  .expectJSON({
+        status: 400,
+  })
+.toss();
+
+frisby.create('case-1-2')
+  .get('http://127.0.0.1:8000/test/user')
+  .expectStatus(200)
+  .expectJSON({
+        status: 400,
+  })
+.toss();
+
+frisby.create('case-1-3')
+  .get('http://127.0.0.1:8000/test/device')
+  .expectStatus(200)
+  .expectJSON({
+        status: 400,
+  })
+.toss();
+
+frisby.create('case-1-4')
+  .get('http://127.0.0.1:8000/test/origin')
   .expectStatus(200)
   .expectJSON({
         status: 400,
