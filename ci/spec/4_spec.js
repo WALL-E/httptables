@@ -42,3 +42,11 @@ frisby.create('user')
   })
 .toss();
 
+frisby.create('user')
+  .post('http://127.0.0.1:8000/test/user')
+  .expectStatus(200)
+  .expectJSON({
+        status: 400,
+  })
+.toss();
+

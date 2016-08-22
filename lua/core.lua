@@ -28,6 +28,12 @@ for _,role_type in pairs(sorted_role_types) do
     if role_type.enable == 0 then
         mark = nil
         ngx.log(ngx.INFO, string.format("%s is disable", role_type.name))
+    else
+        if role_type.optional == 0 and not mark then
+            local response = string.format('{"status":400, "message": "mark: %s must be set"}', role_type.name)
+            ngx.say(response)
+            ngx.exit(ngx.HTTP_OK)
+        end
     end
 
     local role = mark and role_type.hash and role_type.hash[mark]
