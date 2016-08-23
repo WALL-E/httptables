@@ -17,7 +17,6 @@ local idx
 
 local sorted_role_types = policy.get_sorted_role_types()
 
--- origins
 for _,role_type in pairs(sorted_role_types) do
     local ret, mark = pcall(mark_funcions[role_type.name])
     if not ret then
