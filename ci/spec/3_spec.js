@@ -1,50 +1,55 @@
 var frisby = require('frisby');
 
-function getIPAdress(){  
-    var interfaces = require('os').networkInterfaces();  
-    for(var devName in interfaces){  
-          var iface = interfaces[devName];  
-          for(var i=0;i<iface.length;i++){  
-               var alias = iface[i];  
-               if(alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal){  
-                     return alias.address;  
-               }  
-          }  
-    }  
-}  
-
-frisby.create('origin')
+frisby.create('case-3-1')
   .get('http://127.0.0.1:8000/test/origin')
+  .addHeader('X-Device-ID', 'device_1')
   .expectStatus(200)
   .expectJSON({
-        status: 4001,
+        status: 400,
   })
 .toss();
 
-
-frisby.create('origin')
-  .get('http://' + getIPAdress() + ':8000/test/origin')
+frisby.create('case-3-2')
+  .get('http://127.0.0.1:8000/test/user')
+  .addHeader('X-Device-ID', 'device_1')
   .expectStatus(200)
   .expectJSON({
-        status: 200,
+        status: 400,
   })
 .toss();
 
-
-frisby.create('origin')
-  .post('http://127.0.0.1:8000/test/origin')
+frisby.create('case-3-3')
+  .get('http://127.0.0.1:8000/test/device')
+  .addHeader('X-Device-ID', 'device_1')
   .expectStatus(200)
   .expectJSON({
-        status: 4001,
+        status: 4003,
   })
 .toss();
 
-frisby.create('origin')
-  .put('http://127.0.0.1:8000/test/origin')
+frisby.create('case-3-4')
+  .get('http://127.0.0.1:8000/test/origin')
+  .addHeader('X-User-ID', 'user_1') 
   .expectStatus(200)
   .expectJSON({
-        status: 200,
+        status: 400,
   })
 .toss();
 
+frisby.create('case-3-5')
+  .get('http://127.0.0.1:8000/test/user')
+  .addHeader('X-User-ID', 'user_1') 
+  .expectStatus(200)
+  .expectJSON({
+        status: 400,
+  })
+.toss();
 
+frisby.create('case-3-6')
+  .get('http://127.0.0.1:8000/test/device')
+  .addHeader('X-User-ID', 'user_1') 
+  .expectStatus(200)
+  .expectJSON({
+        status: 400,
+  })
+.toss();
