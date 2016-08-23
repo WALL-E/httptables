@@ -23,7 +23,7 @@ function _M.try_reload_policy()
         local ret = _M.load_policy_from_http()
         if ret then
             _M.set_shared_version_counter(center_version_counter)
-            ngx.log(ngx.INFO, "[try_reload_policy] shared_version_counte: ", _M.get_shared_version_counter(), 
+            ngx.log(ngx.INFO, "[try_reload_policy] shared_version_counter: ", _M.get_shared_version_counter(),
                               ", center_version_counter:", _M.get_center_version_counter())
             --cache lamda
             for _,role_type in pairs(shared_role_types) do
@@ -31,16 +31,22 @@ function _M.try_reload_policy()
             end
             --reorganize role_type and role
             sorted_role_types = utils.deep_copy(shared_role_types)
-            local comps = function (a, b)
+            sorted_roles = utils.deep_copy(shared_roles)
+            local role_type_comps = function (a, b)
                 return a.priority < b.priority
             end
-            table.sort(sorted_role_types, comps)
-            for _,role in pairs(shared_roles) do
+            local role_comps = function (a, b)
+                return a.createtime < b.createtime
+            end
+            table.sort(sorted_role_types, role_type_comps)
+            table.sort(sorted_roles, role_comps)
+            for _,role in pairs(sorted_roles) do
                 local timestamp = ngx.now()
                 if role.expired > timestamp then
                     local role_type_name = role["type"]
+                    local role_type_domain = role["domain"]
                     for _,role_type in pairs(sorted_role_types) do
-                        if role_type_name == role_type.name then
+                        if role_type_name == role_type.name and role_type_domain == role_type.domain then
                             if not role_type.hash then
                                 role_type.hash = {}
                             end
