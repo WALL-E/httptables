@@ -49,7 +49,6 @@ chmod +x restart.sh
 
 /bin/cp -rf lua $dir
 /bin/cp -rf httptables.conf $dir
-/bin/cp -rf admin.conf $dir
 /bin/cp -f restart.sh $root/nginx/sbin/
 /bin/cp -f startup.sh $root/nginx/sbin/
 /bin/cp -f nginx.conf $root/nginx/conf/
