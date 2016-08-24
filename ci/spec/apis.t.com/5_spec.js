@@ -4,8 +4,8 @@ var async = require('async');
 async.series([
 
   function(callback){
-    frisby.create('api.t.com-case-4-1-1')
-      .patch('http://127.0.0.1:8080/apis/role_types/1/', {
+    frisby.create('api.t.com-case-5-1-1')
+      .patch('http://127.0.0.1:8080/apis/role_types/2/', {
         enable: 1
       }, {json: true})
       .addHeader('Authorization', 'Token 5fcd69a386ae6e073e51edb941b367d703496f21')
@@ -16,8 +16,8 @@ async.series([
   },
 
   function(callback){
-    frisby.create('api.t.com-case-4-1-2')
-      .patch('http://127.0.0.1:8080/apis/role_types/2/', {
+    frisby.create('api.t.com-case-5-1-2')
+      .patch('http://127.0.0.1:8080/apis/role_types/1/', {
         optional: 1
       }, {json: true})
       .addHeader('Authorization', 'Token 5fcd69a386ae6e073e51edb941b367d703496f21')
@@ -28,13 +28,13 @@ async.series([
   },
 
   function(callback){
-    frisby.create('api.t.com-case-4-2')
-      .get('http://127.0.0.1:8000/test/device')
+    frisby.create('api.t.com-case-5-2')
+      .get('http://127.0.0.1:8000/test/user')
       .addHeader('host', 'apis.t.com')
-      .addHeader('X-Device-ID', 'device_1')
+      .addHeader('X-User-ID', 'user_1')
       .expectStatus(200)
       .expectJSON({
-        status: 4003,
+        status: 4002,
       })
       //.inspectBody()
     .toss();
@@ -42,8 +42,8 @@ async.series([
   },
 
   function(callback){
-    frisby.create('api.t.com-case-4-3')
-      .patch('http://127.0.0.1:8080/apis/role_types/1/', {
+    frisby.create('api.t.com-case-5-3')
+      .patch('http://127.0.0.1:8080/apis/role_types/2/', {
         enable: 0
       }, {json: true})
       .addHeader('Authorization', 'Token 5fcd69a386ae6e073e51edb941b367d703496f21')
@@ -54,7 +54,7 @@ async.series([
   },
 
   function(callback){
-    frisby.create('api.t.com-case-4-4')
+    frisby.create('api.t.com-case-5-4')
       .get('http://127.0.0.1:10983/admin/notify')
       .expectStatus(200)
       .expectJSON({
@@ -66,10 +66,10 @@ async.series([
   },
 
   function(callback){
-    frisby.create('api.t.com-case-4-5')
+    frisby.create('api.t.com-case-5-5')
       .get('http://127.0.0.1:8000/test/device')
       .addHeader('host', 'apis.t.com')
-      .addHeader('X-Device-ID', 'device_1')
+      .addHeader('X-User-ID', 'user_1')
       .expectStatus(200)
       .expectJSON({
         status: 200,
@@ -80,8 +80,8 @@ async.series([
   },
 
   function(callback){
-    frisby.create('api.t.com-case-4-6-1')
-      .patch('http://127.0.0.1:8080/apis/role_types/1/', {
+    frisby.create('api.t.com-case-5-6-1')
+      .patch('http://127.0.0.1:8080/apis/role_types/2/', {
         enable: 1
       }, {json: true})
       .addHeader('Authorization', 'Token 5fcd69a386ae6e073e51edb941b367d703496f21')
@@ -92,7 +92,7 @@ async.series([
   },
 
   function(callback){
-    frisby.create('api.t.com-case-4-7')
+    frisby.create('api.t.com-case-5-7')
       .get('http://127.0.0.1:10983/admin/notify')
       .expectStatus(200)
       .expectJSON({
@@ -104,13 +104,13 @@ async.series([
   },
 
   function(callback){
-    frisby.create('api.t.com-case-4-8')
-      .get('http://127.0.0.1:8000/test/device')
+    frisby.create('api.t.com-case-5-8')
+      .get('http://127.0.0.1:8000/test/user')
       .addHeader('host', 'apis.t.com')
-      .addHeader('X-Device-ID', 'device_1')
+      .addHeader('X-User-ID', 'user_1')
       .expectStatus(200)
       .expectJSON({
-        status: 4003,
+        status: 4002,
       })
       //.inspectBody()
     .toss();
@@ -118,8 +118,8 @@ async.series([
   },
 
   function(callback){
-    frisby.create('api.t.com-case-4-6-2')
-      .patch('http://127.0.0.1:8080/apis/role_types/2/', {
+    frisby.create('api.t.com-case-5-6-2')
+      .patch('http://127.0.0.1:8080/apis/role_types/1/', {
         optional: 0
       }, {json: true})
       .addHeader('Authorization', 'Token 5fcd69a386ae6e073e51edb941b367d703496f21')
