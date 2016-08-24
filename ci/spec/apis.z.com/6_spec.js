@@ -6,7 +6,7 @@ async.series([
 
   function(callback){
     frisby.create('apis.z.com-case-5-1-1')
-      .patch('http://127.0.0.1:8080/apis/role_types/1/', {
+      .patch('http://{httptables_manager}:8080/apis/role_types/1/'.format(config), {
         optional: 0
       }, {json: true})
       .addHeader('Authorization', 'Token 5fcd69a386ae6e073e51edb941b367d703496f21')
@@ -18,7 +18,7 @@ async.series([
 
   function(callback){
     frisby.create('apis.z.com-case-5-1-2')
-      .patch('http://127.0.0.1:8080/apis/role_types/2/', {
+      .patch('http://{httptables_manager}:8080/apis/role_types/2/'.format(config), {
         optional: 0
       }, {json: true})
       .addHeader('Authorization', 'Token 5fcd69a386ae6e073e51edb941b367d703496f21')
@@ -30,7 +30,7 @@ async.series([
 
   function(callback){
     frisby.create('apis.z.com-case-5-2')
-      .get('http://127.0.0.1:8000/test/user')
+      .get('http://{httptables}:8000/test/user'.format(config))
       .addHeader('host', 'apis.z.com')
       .addHeader('X-User-ID', 'user_2')
       .expectStatus(200)
@@ -44,7 +44,7 @@ async.series([
 
   function(callback){
     frisby.create('apis.z.com-case-5-2')
-      .get('http://127.0.0.1:8000/test/device')
+      .get('http://{httptables}:8000/test/device'.format(config))
       .addHeader('host', 'apis.z.com')
       .addHeader('X-Device-ID', 'device_2')
       .expectStatus(200)
@@ -58,7 +58,7 @@ async.series([
 
   function(callback){
     frisby.create('apis.z.com-case-5-2')
-      .get('http://127.0.0.1:8000/test/device')
+      .get('http://{httptables}:8000/test/device'.format(config))
       .addHeader('host', 'apis.z.com')
       .addHeader('X-Device-ID', 'device_2')
       .addHeader('X-User-ID', 'user_2')
@@ -73,7 +73,7 @@ async.series([
 
   function(callback){
     frisby.create('apis.z.com-case-5-2')
-      .get('http://127.0.0.1:8000/test/user')
+      .get('http://{httptables}:8000/test/user'.format(config))
       .addHeader('host', 'apis.z.com')
       .addHeader('X-Device-ID', 'device_2')
       .addHeader('X-User-ID', 'user_2')
@@ -88,7 +88,7 @@ async.series([
 
   function(callback){
     frisby.create('apis.z.com-case-5-1-1')
-      .patch('http://127.0.0.1:8080/apis/role_types/1/', {
+      .patch('http://{httptables_manager}:8080/apis/role_types/1/'.format(config), {
         optional: 0
       }, {json: true})
       .addHeader('Authorization', 'Token 5fcd69a386ae6e073e51edb941b367d703496f21')
@@ -100,7 +100,7 @@ async.series([
 
   function(callback){
     frisby.create('apis.z.com-case-5-1-2')
-      .patch('http://127.0.0.1:8080/apis/role_types/2/', {
+      .patch('http://{httptables_manager}:8080/apis/role_types/2/'.format(config), {
         optional: 0
       }, {json: true})
       .addHeader('Authorization', 'Token 5fcd69a386ae6e073e51edb941b367d703496f21')
