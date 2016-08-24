@@ -64,7 +64,7 @@
 
 * x-www-form-urlencoded
 
-** 规则类型或规则更新后，需要调用http://httptables_host:8001:/admin/notify, 通知httptables同步更新数据，如果是多台httptables，需要依次通知**
+** 规则类型或规则更新后，需要调用http://httptables_host:10983:/admin/notify, 通知httptables同步更新数据，如果是多台httptables，需要依次通知**
 
 ## 规则类型
 目前内置三种规则类型
@@ -284,13 +284,15 @@
 按照规则优先级，遍历所有类型的规则(待优化)
 
 ## 管理接口
-默认管理接口为8001
+默认管理接口为10983
 
 * 发送更新通知，立即从Http/Redis获取最新配置
-  * get http://host:8001/admin/notify
+  * get http://host:10983/admin/notify
 * 查看规则版本号
-  * get http://host:8001/admin/status
+  * get http://host:10983/admin/status
 * 查看规则类型
-  * get http://host:8001/admin/role_types
+  * get http://host:10983/admin/role_types
 * 查看规则
-  * get http://host:8001/admin/roles
+  * get http://host:10983/admin/roles
+* 查看进行排序优化的规则
+  * get http://host:10983/admin/sorted_role_types
