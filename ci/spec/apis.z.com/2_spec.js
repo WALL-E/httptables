@@ -2,7 +2,7 @@ var frisby = require('frisby');
 var config = require('../config');
 
 frisby.create('api.z.com-case-2-1')
-  .get(config.httptables_url + ':8001/test/origin')
+  .get("http://{httptables}:8001/test/origin".format(config))
   .addHeader('host', 'apis.z.com')
   .addHeader('X-Device-ID', 'device_1')
   .addHeader('X-User-ID', 'user_1')
@@ -13,7 +13,7 @@ frisby.create('api.z.com-case-2-1')
 .toss();
 
 frisby.create('api.z.com-case-2-2')
-  .get(config.httptables_url + ':8001/test/user')
+  .get("http://{httptables}:8001/test/user".format(config))
   .addHeader('host', 'apis.z.com')
   .addHeader('X-Device-ID', 'device_1')
   .addHeader('X-User-ID', 'user_1')
@@ -24,7 +24,7 @@ frisby.create('api.z.com-case-2-2')
 .toss();
 
 frisby.create('api.z.com-case-2-3')
-  .get(config.httptables_url + ':8001/test/device')
+  .get("http://{httptables}:8001/test/device".format(config))
   .addHeader('host', 'apis.z.com')
   .addHeader('X-Device-ID', 'device_1')
   .addHeader('X-User-ID', 'user_1')

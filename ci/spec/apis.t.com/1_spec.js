@@ -2,7 +2,7 @@ var frisby = require('frisby');
 var config = require('../config');
 
 frisby.create('api.t.com-case-1-1')
-  .get(config.httptables_url)
+  .get("http://{httptables}:8000/".format(config))
   .addHeader('host', 'apis.t.com')
   .expectStatus(200)
   .expectJSON({
@@ -11,7 +11,7 @@ frisby.create('api.t.com-case-1-1')
 .toss();
 
 frisby.create('api.t.com-case-1-2')
-  .get(config.httptables_url + 'test/user')
+  .get("http://{httptables}:8000/test/user".format(config))
   .addHeader('host', 'apis.t.com')
   .expectStatus(200)
   .expectJSON({
@@ -20,7 +20,7 @@ frisby.create('api.t.com-case-1-2')
 .toss();
 
 frisby.create('api.t.com-case-1-3')
-  .get(config.httptables_url + 'test/device')
+  .get("http://{httptables}:8000/test/device".format(config))
   .addHeader('host', 'apis.t.com')
   .expectStatus(200)
   .expectJSON({
@@ -29,7 +29,7 @@ frisby.create('api.t.com-case-1-3')
 .toss();
 
 frisby.create('api.t.com-case-1-4')
-  .get(config.httptables_url + 'test/origin')
+  .get("http://{httptables}:8000/test/origin".format(config))
   .addHeader('host', 'apis.t.com')
   .expectStatus(200)
   .expectJSON({

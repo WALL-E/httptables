@@ -2,7 +2,7 @@ var frisby = require('frisby');
 var config = require('../config');
 
 frisby.create('api.t.com-case-2-1')
-  .get(config.httptables_url + 'test/origin')
+  .get("http://{httptables}:8000/test/origin".format(config))
   .addHeader('host', 'apis.t.com')
   .addHeader('X-Device-ID', 'device_1')
   .addHeader('X-User-ID', 'user_1')
@@ -13,7 +13,7 @@ frisby.create('api.t.com-case-2-1')
 .toss();
 
 frisby.create('api.t.com-case-2-2')
-  .get(config.httptables_url + 'test/user')
+  .get("http://{httptables}:8000/test/user".format(config))
   .addHeader('host', 'apis.t.com')
   .addHeader('X-Device-ID', 'device_1')
   .addHeader('X-User-ID', 'user_1')
@@ -24,7 +24,7 @@ frisby.create('api.t.com-case-2-2')
 .toss();
 
 frisby.create('api.t.com-case-2-3')
-  .get(config.httptables_url + 'test/device')
+  .get("http://{httptables}:8000/test/device".format(config))
   .addHeader('host', 'apis.t.com')
   .addHeader('X-Device-ID', 'device_1')
   .addHeader('X-User-ID', 'user_1')
