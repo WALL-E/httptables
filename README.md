@@ -21,7 +21,7 @@ In her world, each client has three separate identity, and each is unique
 
 The User and Device, retrieve from request's header, you can customize the **getattr** function, [see more](doc/lamda.md)
 
-> NB: This module makes the assumption your request contain two headers, `X-Device-ID` and ` X-User-ID`
+> NB: By default, this module makes the assumption your request contain two headers, `X-Device-ID` and ` X-User-ID`
  
 ## Features
 Support the following features
