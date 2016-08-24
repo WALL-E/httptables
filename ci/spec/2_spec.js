@@ -1,7 +1,8 @@
 var frisby = require('frisby');
+var config = require('./config');
 
 frisby.create('case-2-1')
-  .get('http://127.0.0.1:8000/test/origin')
+  .get(config.httptables_url + 'test/origin')
   .addHeader('X-Device-ID', 'device_1')
   .addHeader('X-User-ID', 'user_1') 
   .expectStatus(200)
@@ -11,7 +12,7 @@ frisby.create('case-2-1')
 .toss();
 
 frisby.create('case-2-2')
-  .get('http://127.0.0.1:8000/test/user')
+  .get(config.httptables_url + 'test/user')
   .addHeader('X-Device-ID', 'device_1')
   .addHeader('X-User-ID', 'user_1') 
   .expectStatus(200)
@@ -21,7 +22,7 @@ frisby.create('case-2-2')
 .toss();
 
 frisby.create('case-2-3')
-  .get('http://127.0.0.1:8000/test/device')
+  .get(config.httptables_url + 'test/device')
   .addHeader('X-Device-ID', 'device_1')
   .addHeader('X-User-ID', 'user_1') 
   .expectStatus(200)

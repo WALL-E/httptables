@@ -1,7 +1,8 @@
 var frisby = require('frisby');
+var config = require('./config');
 
 frisby.create('case-1-1')
-  .get('http://127.0.0.1:8000/')
+  .get(config.httptables_url)
   .expectStatus(200)
   .expectJSON({
         status: 200,
@@ -9,7 +10,7 @@ frisby.create('case-1-1')
 .toss();
 
 frisby.create('case-1-2')
-  .get('http://127.0.0.1:8000/test/user')
+  .get(config.httptables_url + 'test/user')
   .expectStatus(200)
   .expectJSON({
         status: 200,
@@ -17,7 +18,7 @@ frisby.create('case-1-2')
 .toss();
 
 frisby.create('case-1-3')
-  .get('http://127.0.0.1:8000/test/device')
+  .get(config.httptables_url + 'test/device')
   .expectStatus(200)
   .expectJSON({
         status: 200,
@@ -25,7 +26,7 @@ frisby.create('case-1-3')
 .toss();
 
 frisby.create('case-1-4')
-  .get('http://127.0.0.1:8000/test/origin')
+  .get(config.httptables_url + 'test/origin')
   .expectStatus(200)
   .expectJSON({
         status: 200,
