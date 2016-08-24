@@ -1,4 +1,5 @@
 var frisby = require('frisby');
+var config = require('../config');
 
 frisby.create('api.t.com-case-3-1')
   .get('http://127.0.0.1:8000/test/origin')

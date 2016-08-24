@@ -1,5 +1,6 @@
 var frisby = require('frisby');
 var async = require('async');
+var config = require('../config');
 
 async.series([
 

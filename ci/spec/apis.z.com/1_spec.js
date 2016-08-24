@@ -1,4 +1,5 @@
 var frisby = require('frisby');
+var config = require('../config');
 
 frisby.create('api.z.com-case-1-1')
   .get('http://127.0.0.1:8001/')
