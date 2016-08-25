@@ -4,11 +4,16 @@ local ngx = require "ngx"
 local cjson = require "cjson.safe"
 cjson.encode_sparse_array(true)
 local policy = require "policy"
+local pretty = require "prettycjson"
 
 _G._HTTPTABLES = {
   _NAME = meta._NAME,
   _VERSION = meta._VERSION
 }
+
+local function say(json)
+    ngx.say(pretty(cjson.decode(json)))
+end
 
 local _M = {}
 
@@ -22,28 +27,29 @@ function _M.cors()
 end
 
 function _M.default() 
-    ngx.say(string.format("%s version: %s", meta._NAME, meta._VERSION))
+    local response = string.format('{"status":200, "message":"ok", "name": "%s", "version": "%s"}', meta._NAME, meta._VERSION)
+    say(response)
 end
 
 function _M.roles()
-    local response = string.format('{"status":200, "message":"ok", result:%s}', cjson.encode(shared_roles))
-    ngx.say(response)
+    local response = string.format('{"status":200, "message":"ok", "result":%s}', cjson.encode(shared_roles))
+    say(response)
 end
 
 function _M.role_types()
-    local response = string.format('{"status":200, "message":"ok", result:%s}', cjson.encode(shared_role_types))
-    ngx.say(response)
+    local response = string.format('{"status":200, "message":"ok", "result":%s}', cjson.encode(shared_role_types))
+    say(response)
 end
 
 function _M.sorted_role_types()
-    local response = string.format('{"status":200, "message":"ok", result:%s}', cjson.encode(sorted_role_types))
-    ngx.say(response)
+    local response = string.format('{"status":200, "message":"ok", "result":%s}', cjson.encode(sorted_role_types))
+    say(response)
 end
 
 function _M.notify()
     policy.increase_center_version_counter()
     local response = string.format('{"status":200, "message":"ok", "result": {"center_version_counter": %s}}', policy.get_center_version_counter())
-    ngx.say(response)
+    say(response)
 end
 
 function _M.status()
@@ -52,7 +58,7 @@ function _M.status()
         ["shared_version_counter"] = shared_version_counter,
     }
     local response = string.format('{"status":200, "message":"ok", "result": %s}', cjson.encode(status))
-    ngx.say(response)
+    say(response)
 end
 
 function _M.lamda()
