@@ -78,7 +78,7 @@ httptables version: 16.8.23-alpha
             "method": "get",
             "response": "{\"status\":4003, \"message\":\"illegal device\"}",
             "type": "device",
-            "url": "http://127.0.0.1:8080/apis/roles/1/",
+            "url": "http://127.0.0.1:10085/apis/roles/1/",
             "action": "reject",
             "domain": "apis.t.com",
             "mark": "device_1"
@@ -91,7 +91,7 @@ httptables version: 16.8.23-alpha
             "method": "get",
             "response": "{\"status\":4002, \"message\":\"illegal user\"}",
             "type": "user",
-            "url": "http://127.0.0.1:8080/apis/roles/2/",
+            "url": "http://127.0.0.1:10085/apis/roles/2/",
             "action": "reject",
             "domain": "apis.t.com",
             "mark": "user_1"
@@ -104,7 +104,7 @@ httptables version: 16.8.23-alpha
             "method": "get",
             "response": "{\"status\":4001, \"message\":\"illegal origin\"}",
             "type": "origin",
-            "url": "http://127.0.0.1:8080/apis/roles/3/",
+            "url": "http://127.0.0.1:10085/apis/roles/3/",
             "action": "reject",
             "domain": "apis.t.com",
             "mark": "127.0.0.1"
@@ -117,7 +117,7 @@ httptables version: 16.8.23-alpha
             "method": "get",
             "response": "{\"status\":4103, \"message\":\"illegal device\"}",
             "type": "device",
-            "url": "http://127.0.0.1:8080/apis/roles/4/",
+            "url": "http://127.0.0.1:10085/apis/roles/4/",
             "action": "reject",
             "domain": "apis.z.com",
             "mark": "device_1"
@@ -130,7 +130,7 @@ httptables version: 16.8.23-alpha
             "method": "get",
             "response": "{\"status\":4102, \"message\":\"illegal user\"}",
             "type": "user",
-            "url": "http://127.0.0.1:8080/apis/roles/5/",
+            "url": "http://127.0.0.1:10085/apis/roles/5/",
             "action": "reject",
             "domain": "apis.z.com",
             "mark": "user_1"
@@ -143,7 +143,7 @@ httptables version: 16.8.23-alpha
             "method": "get",
             "response": "{\"status\":4101, \"message\":\"illegal origin\"}",
             "type": "origin",
-            "url": "http://127.0.0.1:8080/apis/roles/6/",
+            "url": "http://127.0.0.1:10085/apis/roles/6/",
             "action": "reject",
             "domain": "apis.z.com",
             "mark": "127.0.0.1"
@@ -166,7 +166,7 @@ httptables version: 16.8.23-alpha
             "enable": 1,
             "optional": 0,
             "lamda": "return ngx.req.get_headers()['X-Device-ID']",
-            "url": "http://127.0.0.1:8080/apis/role_types/1/",
+            "url": "http://127.0.0.1:10085/apis/role_types/1/",
             "name": "device",
             "priority": 1,
             "domain": "apis.t.com"
@@ -175,7 +175,7 @@ httptables version: 16.8.23-alpha
             "enable": 1,
             "optional": 0,
             "lamda": "return ngx.req.get_headers()['X-User-ID']",
-            "url": "http://127.0.0.1:8080/apis/role_types/2/",
+            "url": "http://127.0.0.1:10085/apis/role_types/2/",
             "name": "user",
             "priority": 2,
             "domain": "apis.t.com"
@@ -184,7 +184,7 @@ httptables version: 16.8.23-alpha
             "enable": 1,
             "optional": 0,
             "lamda": "return ngx.var.remote_addr",
-            "url": "http://127.0.0.1:8080/apis/role_types/3/",
+            "url": "http://127.0.0.1:10085/apis/role_types/3/",
             "name": "origin",
             "priority": 3,
             "domain": "apis.t.com"
@@ -193,7 +193,7 @@ httptables version: 16.8.23-alpha
             "enable": 1,
             "optional": 0,
             "lamda": "return ngx.req.get_headers()['X-Device-ID']",
-            "url": "http://127.0.0.1:8080/apis/role_types/4/",
+            "url": "http://127.0.0.1:10085/apis/role_types/4/",
             "name": "device",
             "priority": 1,
             "domain": "apis.z.com"
@@ -202,7 +202,7 @@ httptables version: 16.8.23-alpha
             "enable": 1,
             "optional": 0,
             "lamda": "return ngx.req.get_headers()['X-User-ID']",
-            "url": "http://127.0.0.1:8080/apis/role_types/5/",
+            "url": "http://127.0.0.1:10085/apis/role_types/5/",
             "name": "user",
             "priority": 2,
             "domain": "apis.z.com"
@@ -211,7 +211,7 @@ httptables version: 16.8.23-alpha
             "enable": 1,
             "optional": 0,
             "lamda": "return ngx.var.remote_addr",
-            "url": "http://127.0.0.1:8080/apis/role_types/6/",
+            "url": "http://127.0.0.1:10085/apis/role_types/6/",
             "name": "origin",
             "priority": 3,
             "domain": "apis.z.com"
