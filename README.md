@@ -1,6 +1,8 @@
 # httptables (just like Linux's iptables)
 httptables is a based on the [OpenResty](https://openresty.org/en/), kind of a firewall for http requests based on headers. It parses a set of rules for each HTTP header and apply the matching policy. Policy using Restful interface management, easy enough to integration with the third party system(User behavior analysis system).
 
+`proxy port`: 8000
+`admin port`: 10983
 
 Design details please click [OUTLINE.md](doc/OUTLINE中文版.md)。
 
