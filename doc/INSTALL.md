@@ -1,7 +1,7 @@
 # Install
 
 # Out-of-the-box
-Download vagrant box [httptables](https://share.weiyun.com/a32b70bcf99b551cf890a494abf64796)
+Download vagrant box [httptables](https://share.weiyun.com/a32b70bcf99b551cf890a494abf64796), application default location is `/apps/`
 
 login:
 
