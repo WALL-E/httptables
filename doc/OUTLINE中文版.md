@@ -89,7 +89,7 @@
 ```
 [
     {
-        "url": "http://172.28.32.105:8080/apis/role_types/2/",
+        "url": "http://172.28.32.105:10085/apis/role_types/2/",
         "name": "device",
         "priority": 1,
         "lamda": "return ngx.req.get_headers()['X-Device-ID']",
@@ -98,7 +98,7 @@
         "domain": "apis.t.com"
     },
     {
-        "url": "http://172.28.32.105:8080/apis/role_types/3/",
+        "url": "http://172.28.32.105:10085/apis/role_types/3/",
         "name": "user",
         "priority": 1,
         "lamda": "return ngx.req.get_headers()['X-User-ID']",
@@ -107,7 +107,7 @@
         "domain": "apis.t.com"
     },
     {
-        "url": "http://172.28.32.105:8080/apis/role_types/5/",
+        "url": "http://172.28.32.105:10085/apis/role_types/5/",
         "name": "origin",
         "priority": 3,
         "lamda": "return ngx.var.remote_addr",
@@ -188,7 +188,7 @@
 ```
 [
     {
-        "url": "http://172.28.32.105:8080/apis/roles/3/",
+        "url": "http://172.28.32.105:10085/apis/roles/3/",
         "type": "device",
         "mark": "device_1",
         "uri": "/test/device",
@@ -201,7 +201,7 @@
         "domain": "apis.t.com"
     },
     {
-        "url": "http://172.28.32.105:8080/apis/roles/4/",
+        "url": "http://172.28.32.105:10085/apis/roles/4/",
         "type": "user",
         "mark": "user_1",
         "uri": "/test/user",
@@ -214,7 +214,7 @@
         "domain": "apis.t.com"
     },
     {
-        "url": "http://172.28.32.105:8080/apis/roles/18/",
+        "url": "http://172.28.32.105:10085/apis/roles/18/",
         "type": "origin",
         "mark": "127.0.0.1",
         "uri": "/test/origin",
