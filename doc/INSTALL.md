@@ -10,7 +10,7 @@ login:
 
 startup
 ```
-run /home/vagrant/httptables-startup.sh
+sh /home/vagrant/httptables-startup.sh
 ```
 
 **or**
