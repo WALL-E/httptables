@@ -1,5 +1,20 @@
 # Install
 
+# Out-of-the-box
+Download vagrant box [httptables](https://share.weiyun.com/a32b70bcf99b551cf890a494abf64796)
+
+login:
+
+* username: vagrant
+* password: vagrant
+
+startup
+```
+run /home/vagrant/httptables-startup.sh
+```
+
+**or**
+
 # Pre condition
 You need to install [httptables-manager](https://github.com/WALL-E/httptables-manager) first
 
