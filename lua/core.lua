@@ -6,6 +6,10 @@ local utils = require "utils"
 local policy = require "policy"
 local constants = require "constants"
 
+local remote_addr = ngx.var.remote_addr
+if utils.is_private_ip(remote_addr) or (remote_addr == "unix:") then
+    return ngx.exit(ngx.OK)
+end
 policy.try_reload_policy()
 
 local mark_funcions = policy.get_shared_mark_functions()
@@ -16,10 +20,6 @@ local timestamp = ngx.now()
 local idx
 
 local sorted_role_types = policy.get_sorted_role_types()
-
-if utils.is_private_ip(ngx.var.remote_addr) then
-    ngx.exit(ngx.OK)
-end
 
 for _,role_type in pairs(sorted_role_types) do
     if role_type.domain == ngx.var.host then
