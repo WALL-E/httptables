@@ -51,7 +51,7 @@ for _,role_type in pairs(sorted_role_types) do
                 if idx then
                     -- 检查URI
                     ngx.log(ngx.INFO, "check uri")
-                    if uri == role.uri then
+                    if string.lower(uri) == string.lower(role.uri) then
                         -- 检查mark
                         ngx.log(ngx.INFO, string.format("check mark: %s", role.type))
                         ngx.log(ngx.INFO, string.format("[%s behaviour]action:%s, uri:%s, method:%s, mark:%s", meta._NAME, role.action, uri, method, role.mark))
