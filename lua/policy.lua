@@ -128,7 +128,7 @@ function _M.load_policy_from_http()
 
     local res, err = httpc:request_uri(config.http_endpoint.role_types, {})
     if not res then
-        ngx.log(ngx.ERR, "[load_policy_from_http] request_uri role_types failed")
+        ngx.log(ngx.ERR, "[load_policy_from_http] request_uri role_types failed: ", err)
         return false
     end
     if res.status == ngx.HTTP_OK then
