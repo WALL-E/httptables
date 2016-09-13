@@ -6,6 +6,10 @@ local utils = require "utils"
 local policy = require "policy"
 local constants = require "constants"
 
+local remote_addr = ngx.var.remote_addr
+if utils.is_private_ip(remote_addr) or (remote_addr == "unix:") then
+    return ngx.exit(ngx.OK)
+end
 policy.try_reload_policy()
 
 local mark_funcions = policy.get_shared_mark_functions()
@@ -37,13 +41,15 @@ end
 -- filter uri --
 local hit_uri = false
 for _,role in pairs(roles) do
-    if uri == role.uri then
+    if string.lower(uri) == string.lower(role.uri) then
         hit_uri = true
     end
 end
 if not hit_uri then
     return ngx.exit(ngx.OK)
 end
+
+ngx.header.content_type = "application/x-javascript;charset=UTF-8"
 
 for _,role_type in pairs(sorted_role_types) do
     if role_type.domain == ngx.var.host then
@@ -75,7 +81,7 @@ for _,role_type in pairs(sorted_role_types) do
                 if idx then
                     -- 检查URI
                     ngx.log(ngx.INFO, "check uri")
-                    if uri == role.uri then
+                    if string.lower(uri) == string.lower(role.uri) then
                         -- 检查mark
                         ngx.log(ngx.INFO, string.format("check mark: %s", role.type))
                         ngx.log(ngx.INFO, string.format("[%s behaviour]action:%s, uri:%s, method:%s, mark:%s", meta._NAME, role.action, uri, method, role.mark))
