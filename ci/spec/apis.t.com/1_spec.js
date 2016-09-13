@@ -6,7 +6,7 @@ frisby.create('api.t.com-case-1-1')
   .addHeader('host', 'apis.t.com')
   .expectStatus(200)
   .expectJSON({
-        status: 400,
+        status: 200,
   })
 .toss();
 
