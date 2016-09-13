@@ -21,6 +21,8 @@ local idx
 
 local sorted_role_types = policy.get_sorted_role_types()
 
+ngx.header.content_type = "application/x-javascript;charset=UTF-8"
+
 for _,role_type in pairs(sorted_role_types) do
     if role_type.domain == ngx.var.host then
         local ret, mark = pcall(mark_funcions[role_type.name])
