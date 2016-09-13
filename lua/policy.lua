@@ -65,7 +65,7 @@ function _M.get_roles()
 end
 
 function _M.get_role_types()
-    return role_types
+    return shared_role_types
 end
 
 function _M.get_sorted_role_types()
