@@ -35,6 +35,7 @@ for _,role_type in pairs(role_types) do
     end
 end
 if not hit_domain then
+    ngx.log(ngx.INFO, string.format("domain %s: not hit rules", ngx.var.host))
     return ngx.exit(ngx.OK)
 end
 
@@ -46,6 +47,7 @@ for _,role in pairs(roles) do
     end
 end
 if not hit_uri then
+    ngx.log(ngx.INFO, string.format("uri %s: not hit rules", uri))
     return ngx.exit(ngx.OK)
 end
 
