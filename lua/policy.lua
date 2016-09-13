@@ -60,6 +60,14 @@ function _M.try_reload_policy()
     end
 end
 
+function _M.get_roles()
+    return shared_roles
+end
+
+function _M.get_role_types()
+    return role_types
+end
+
 function _M.get_sorted_role_types()
     return sorted_role_types
 end

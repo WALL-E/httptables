@@ -15,10 +15,34 @@ local method = ngx.req.get_method()
 local timestamp = ngx.now()
 local idx
 
+local roles = policy.get_roles()
+local role_types = policy.get_role_types()
 local sorted_role_types = policy.get_sorted_role_types()
 
 if utils.is_private_ip(ngx.var.remote_addr) then
-    ngx.exit(ngx.OK)
+    return ngx.exit(ngx.OK)
+end
+
+-- filter domain --
+local hit_domain = false
+for _,role_type in pairs(role_types) do
+    if role_type.domain == ngx.var.host then
+        hit_domain = true
+    end
+end
+if not hit_domain then
+    return ngx.exit(ngx.OK)
+end
+
+-- filter uri --
+local hit_uri = false
+for _,role in pairs(roles) do
+    if uri == role.uri then
+        hit_uri = true
+    end
+end
+if not hit_uri then
+    return ngx.exit(ngx.OK)
 end
 
 for _,role_type in pairs(sorted_role_types) do
@@ -78,4 +102,4 @@ for _,role_type in pairs(sorted_role_types) do
     end
 end
 
-ngx.exit(ngx.OK)
+return ngx.exit(ngx.OK)
