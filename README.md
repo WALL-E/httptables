@@ -40,8 +40,8 @@ Please click [INSTALL.md](doc/INSTALL.md) to view the installation documentation
 open lua/config.py and modify the contents of the `httptables-manager-ip`
 
 ```
-_M.http_endpoint.role_types = "http://httptables-manager-ip:10085/apis/role_types/"
-_M.http_endpoint.roles = "http://httptables-manager-ip:10085/apis/roles/"
+_M.http_endpoint.rule_types = "http://httptables-manager-ip:10085/apis/rule_types/"
+_M.http_endpoint.rules = "http://httptables-manager-ip:10085/apis/rules/"
 ```
 
 # Copyleft
