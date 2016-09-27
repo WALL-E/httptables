@@ -53,8 +53,8 @@
 # 五. 数据库设计
 规则使用MySQL作持久化存储，涉及到2个表，表字段请查看 [Restful接口设计](#RestFul接口设计)
 
-* role_type
-* role
+* rule_type
+* rule
 
 
 # 六. RestFul接口设计
@@ -69,7 +69,7 @@
 ## 规则类型
 目前内置三种规则类型
 
-* 接口地址：/apis/role_types
+* 接口地址：/apis/rule_types
 * 权限：创建/更新/删除/查看
 * 请求方法：GET/POST/PUT/PATCH/DELETE
 
@@ -89,7 +89,7 @@
 ```
 [
     {
-        "url": "http://172.28.32.105:10085/apis/role_types/2/",
+        "url": "http://172.28.32.105:10085/apis/rule_types/2/",
         "name": "device",
         "priority": 1,
         "lamda": "return ngx.req.get_headers()['X-Device-ID']",
@@ -98,7 +98,7 @@
         "domain": "apis.t.com"
     },
     {
-        "url": "http://172.28.32.105:10085/apis/role_types/3/",
+        "url": "http://172.28.32.105:10085/apis/rule_types/3/",
         "name": "user",
         "priority": 1,
         "lamda": "return ngx.req.get_headers()['X-User-ID']",
@@ -107,7 +107,7 @@
         "domain": "apis.t.com"
     },
     {
-        "url": "http://172.28.32.105:10085/apis/role_types/5/",
+        "url": "http://172.28.32.105:10085/apis/rule_types/5/",
         "name": "origin",
         "priority": 3,
         "lamda": "return ngx.var.remote_addr",
@@ -166,7 +166,7 @@
 ## 规则
 规则详细内容
 
-* 接口地址：/apis/roles
+* 接口地址：/apis/rules
 * 权限：创建/更新/删除/查看
 * 请求方法：GET/POST/PUT/PATCH/DELETE
 
@@ -188,7 +188,7 @@
 ```
 [
     {
-        "url": "http://172.28.32.105:10085/apis/roles/3/",
+        "url": "http://172.28.32.105:10085/apis/rules/3/",
         "type": "device",
         "mark": "device_1",
         "uri": "/test/device",
@@ -201,7 +201,7 @@
         "domain": "apis.t.com"
     },
     {
-        "url": "http://172.28.32.105:10085/apis/roles/4/",
+        "url": "http://172.28.32.105:10085/apis/rules/4/",
         "type": "user",
         "mark": "user_1",
         "uri": "/test/user",
@@ -214,7 +214,7 @@
         "domain": "apis.t.com"
     },
     {
-        "url": "http://172.28.32.105:10085/apis/roles/18/",
+        "url": "http://172.28.32.105:10085/apis/rules/18/",
         "type": "origin",
         "mark": "127.0.0.1",
         "uri": "/test/origin",
@@ -291,8 +291,8 @@
 * 查看规则版本号
   * get http://host:10983/admin/status
 * 查看规则类型
-  * get http://host:10983/admin/role_types
+  * get http://host:10983/admin/rule_types
 * 查看规则
-  * get http://host:10983/admin/roles
+  * get http://host:10983/admin/rules
 * 查看进行排序优化的规则
-  * get http://host:10983/admin/sorted_role_types
+  * get http://host:10983/admin/sorted_rule_types
