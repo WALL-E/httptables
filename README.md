@@ -32,6 +32,8 @@ Support the following actions
   * **Reject** Blocking the user requests, return the response of custom content
 * speed bump
   * **Defer** SLowing down of the request of the user
+* other
+  * user defined
 
 ## Install
 Please click [INSTALL.md](doc/INSTALL.md) to view the installation documentation
